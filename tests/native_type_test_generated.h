@@ -191,7 +191,7 @@ inline flatbuffers::Offset<ApplicationData> CreateApplicationDataDirect(
     const std::vector<Geometry::Vector3DAlt> *vectors_alt = nullptr) {
   auto vectors__ = vectors ? _fbb.CreateVectorOfStructs<Geometry::Vector3D>(*vectors) : 0;
   auto vectors_alt__ = vectors_alt ? _fbb.CreateVectorOfStructs<Geometry::Vector3DAlt>(*vectors_alt) : 0;
-  return Geometry::CreateApplicationData(
+  return ::Geometry::CreateApplicationData(
       _fbb,
       vectors__,
       vectors_alt__);
@@ -222,7 +222,7 @@ inline flatbuffers::Offset<ApplicationData> CreateApplicationData(flatbuffers::F
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const ApplicationDataT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _vectors = _o->vectors.size() ? _fbb.CreateVectorOfNativeStructs<Geometry::Vector3D, Native::Vector3D>(_o->vectors) : 0;
   auto _vectors_alt = _o->vectors_alt.size() ? _fbb.CreateVectorOfNativeStructs<Geometry::Vector3DAlt, Native::Vector3D>(_o->vectors_alt, flatbuffers::PackVector3DAlt) : 0;
-  return Geometry::CreateApplicationData(
+  return ::Geometry::CreateApplicationData(
       _fbb,
       _vectors,
       _vectors_alt);
@@ -283,41 +283,41 @@ inline const flatbuffers::TypeTable *ApplicationDataTypeTable() {
   return &tt;
 }
 
-inline const Geometry::ApplicationData *GetApplicationData(const void *buf) {
-  return flatbuffers::GetRoot<Geometry::ApplicationData>(buf);
+inline const ::Geometry::ApplicationData *GetApplicationData(const void *buf) {
+  return flatbuffers::GetRoot<::Geometry::ApplicationData>(buf);
 }
 
-inline const Geometry::ApplicationData *GetSizePrefixedApplicationData(const void *buf) {
-  return flatbuffers::GetSizePrefixedRoot<Geometry::ApplicationData>(buf);
+inline const ::Geometry::ApplicationData *GetSizePrefixedApplicationData(const void *buf) {
+  return flatbuffers::GetSizePrefixedRoot<::Geometry::ApplicationData>(buf);
 }
 
 inline ApplicationData *GetMutableApplicationData(void *buf) {
   return flatbuffers::GetMutableRoot<ApplicationData>(buf);
 }
 
-inline Geometry::ApplicationData *GetMutableSizePrefixedApplicationData(void *buf) {
-  return flatbuffers::GetMutableSizePrefixedRoot<Geometry::ApplicationData>(buf);
+inline ::Geometry::ApplicationData *GetMutableSizePrefixedApplicationData(void *buf) {
+  return flatbuffers::GetMutableSizePrefixedRoot<::Geometry::ApplicationData>(buf);
 }
 
 inline bool VerifyApplicationDataBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifyBuffer<Geometry::ApplicationData>(nullptr);
+  return verifier.VerifyBuffer<::Geometry::ApplicationData>(nullptr);
 }
 
 inline bool VerifySizePrefixedApplicationDataBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifySizePrefixedBuffer<Geometry::ApplicationData>(nullptr);
+  return verifier.VerifySizePrefixedBuffer<::Geometry::ApplicationData>(nullptr);
 }
 
 inline void FinishApplicationDataBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<Geometry::ApplicationData> root) {
+    flatbuffers::Offset<::Geometry::ApplicationData> root) {
   fbb.Finish(root);
 }
 
 inline void FinishSizePrefixedApplicationDataBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<Geometry::ApplicationData> root) {
+    flatbuffers::Offset<::Geometry::ApplicationData> root) {
   fbb.FinishSizePrefixed(root);
 }
 

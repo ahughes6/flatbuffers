@@ -782,7 +782,7 @@ inline flatbuffers::Offset<ScalarStuff> CreateScalarStuff(flatbuffers::FlatBuffe
   auto _just_enum = _o->just_enum;
   auto _maybe_enum = _o->maybe_enum;
   auto _default_enum = _o->default_enum;
-  return optional_scalars::CreateScalarStuff(
+  return ::optional_scalars::CreateScalarStuff(
       _fbb,
       _just_i8,
       _maybe_i8,
@@ -928,20 +928,20 @@ inline const flatbuffers::TypeTable *ScalarStuffTypeTable() {
   return &tt;
 }
 
-inline const optional_scalars::ScalarStuff *GetScalarStuff(const void *buf) {
-  return flatbuffers::GetRoot<optional_scalars::ScalarStuff>(buf);
+inline const ::optional_scalars::ScalarStuff *GetScalarStuff(const void *buf) {
+  return flatbuffers::GetRoot<::optional_scalars::ScalarStuff>(buf);
 }
 
-inline const optional_scalars::ScalarStuff *GetSizePrefixedScalarStuff(const void *buf) {
-  return flatbuffers::GetSizePrefixedRoot<optional_scalars::ScalarStuff>(buf);
+inline const ::optional_scalars::ScalarStuff *GetSizePrefixedScalarStuff(const void *buf) {
+  return flatbuffers::GetSizePrefixedRoot<::optional_scalars::ScalarStuff>(buf);
 }
 
 inline ScalarStuff *GetMutableScalarStuff(void *buf) {
   return flatbuffers::GetMutableRoot<ScalarStuff>(buf);
 }
 
-inline optional_scalars::ScalarStuff *GetMutableSizePrefixedScalarStuff(void *buf) {
-  return flatbuffers::GetMutableSizePrefixedRoot<optional_scalars::ScalarStuff>(buf);
+inline ::optional_scalars::ScalarStuff *GetMutableSizePrefixedScalarStuff(void *buf) {
+  return flatbuffers::GetMutableSizePrefixedRoot<::optional_scalars::ScalarStuff>(buf);
 }
 
 inline const char *ScalarStuffIdentifier() {
@@ -960,12 +960,12 @@ inline bool SizePrefixedScalarStuffBufferHasIdentifier(const void *buf) {
 
 inline bool VerifyScalarStuffBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifyBuffer<optional_scalars::ScalarStuff>(ScalarStuffIdentifier());
+  return verifier.VerifyBuffer<::optional_scalars::ScalarStuff>(ScalarStuffIdentifier());
 }
 
 inline bool VerifySizePrefixedScalarStuffBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifySizePrefixedBuffer<optional_scalars::ScalarStuff>(ScalarStuffIdentifier());
+  return verifier.VerifySizePrefixedBuffer<::optional_scalars::ScalarStuff>(ScalarStuffIdentifier());
 }
 
 inline const char *ScalarStuffExtension() {
@@ -974,13 +974,13 @@ inline const char *ScalarStuffExtension() {
 
 inline void FinishScalarStuffBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<optional_scalars::ScalarStuff> root) {
+    flatbuffers::Offset<::optional_scalars::ScalarStuff> root) {
   fbb.Finish(root, ScalarStuffIdentifier());
 }
 
 inline void FinishSizePrefixedScalarStuffBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<optional_scalars::ScalarStuff> root) {
+    flatbuffers::Offset<::optional_scalars::ScalarStuff> root) {
   fbb.FinishSizePrefixed(root, ScalarStuffIdentifier());
 }
 

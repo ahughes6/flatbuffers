@@ -413,7 +413,7 @@ inline flatbuffers::Offset<TableInFirstNS> CreateTableInFirstNS(flatbuffers::Fla
   auto _foo_union_type = _o->foo_union.type;
   auto _foo_union = _o->foo_union.Pack(_fbb);
   auto _foo_struct = _o->foo_struct ? _o->foo_struct.get() : 0;
-  return NamespaceA::CreateTableInFirstNS(
+  return ::NamespaceA::CreateTableInFirstNS(
       _fbb,
       _foo_table,
       _foo_enum,
@@ -472,7 +472,7 @@ inline flatbuffers::Offset<TableInC> CreateTableInC(flatbuffers::FlatBufferBuild
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const TableInCT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _refer_to_a1 = _o->refer_to_a1 ? CreateTableInFirstNS(_fbb, _o->refer_to_a1.get(), _rehasher) : 0;
   auto _refer_to_a2 = _o->refer_to_a2 ? CreateSecondTableInA(_fbb, _o->refer_to_a2.get(), _rehasher) : 0;
-  return NamespaceC::CreateTableInC(
+  return ::NamespaceC::CreateTableInC(
       _fbb,
       _refer_to_a1,
       _refer_to_a2);
@@ -523,7 +523,7 @@ inline flatbuffers::Offset<SecondTableInA> CreateSecondTableInA(flatbuffers::Fla
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const SecondTableInAT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _refer_to_c = _o->refer_to_c ? CreateTableInC(_fbb, _o->refer_to_c.get(), _rehasher) : 0;
-  return NamespaceA::CreateSecondTableInA(
+  return ::NamespaceA::CreateSecondTableInA(
       _fbb,
       _refer_to_c);
 }

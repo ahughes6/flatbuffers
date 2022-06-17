@@ -447,7 +447,7 @@ inline flatbuffers::Offset<Monster> CreateMonsterDirect(
   auto inventory__ = inventory ? _fbb.CreateVector<uint8_t>(*inventory) : 0;
   auto weapons__ = weapons ? _fbb.CreateVector<flatbuffers::Offset<MyGame::Sample::Weapon>>(*weapons) : 0;
   auto path__ = path ? _fbb.CreateVectorOfStructs<MyGame::Sample::Vec3>(*path) : 0;
-  return MyGame::Sample::CreateMonster(
+  return ::MyGame::Sample::CreateMonster(
       _fbb,
       pos,
       mana,
@@ -539,7 +539,7 @@ inline flatbuffers::Offset<Weapon> CreateWeaponDirect(
     const char *name = nullptr,
     int16_t damage = 0) {
   auto name__ = name ? _fbb.CreateString(name) : 0;
-  return MyGame::Sample::CreateWeapon(
+  return ::MyGame::Sample::CreateWeapon(
       _fbb,
       name__,
       damage);
@@ -631,7 +631,7 @@ inline flatbuffers::Offset<Monster> CreateMonster(flatbuffers::FlatBufferBuilder
   auto _equipped_type = _o->equipped.type;
   auto _equipped = _o->equipped.Pack(_fbb);
   auto _path = _o->path.size() ? _fbb.CreateVectorOfStructs(_o->path) : 0;
-  return MyGame::Sample::CreateMonster(
+  return ::MyGame::Sample::CreateMonster(
       _fbb,
       _pos,
       _mana,
@@ -680,7 +680,7 @@ inline flatbuffers::Offset<Weapon> CreateWeapon(flatbuffers::FlatBufferBuilder &
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const WeaponT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _name = _o->name.empty() ? 0 : _fbb.CreateString(_o->name);
   auto _damage = _o->damage;
-  return MyGame::Sample::CreateWeapon(
+  return ::MyGame::Sample::CreateWeapon(
       _fbb,
       _name,
       _damage);
@@ -867,41 +867,41 @@ inline const flatbuffers::TypeTable *WeaponTypeTable() {
   return &tt;
 }
 
-inline const MyGame::Sample::Monster *GetMonster(const void *buf) {
-  return flatbuffers::GetRoot<MyGame::Sample::Monster>(buf);
+inline const ::MyGame::Sample::Monster *GetMonster(const void *buf) {
+  return flatbuffers::GetRoot<::MyGame::Sample::Monster>(buf);
 }
 
-inline const MyGame::Sample::Monster *GetSizePrefixedMonster(const void *buf) {
-  return flatbuffers::GetSizePrefixedRoot<MyGame::Sample::Monster>(buf);
+inline const ::MyGame::Sample::Monster *GetSizePrefixedMonster(const void *buf) {
+  return flatbuffers::GetSizePrefixedRoot<::MyGame::Sample::Monster>(buf);
 }
 
 inline Monster *GetMutableMonster(void *buf) {
   return flatbuffers::GetMutableRoot<Monster>(buf);
 }
 
-inline MyGame::Sample::Monster *GetMutableSizePrefixedMonster(void *buf) {
-  return flatbuffers::GetMutableSizePrefixedRoot<MyGame::Sample::Monster>(buf);
+inline ::MyGame::Sample::Monster *GetMutableSizePrefixedMonster(void *buf) {
+  return flatbuffers::GetMutableSizePrefixedRoot<::MyGame::Sample::Monster>(buf);
 }
 
 inline bool VerifyMonsterBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifyBuffer<MyGame::Sample::Monster>(nullptr);
+  return verifier.VerifyBuffer<::MyGame::Sample::Monster>(nullptr);
 }
 
 inline bool VerifySizePrefixedMonsterBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifySizePrefixedBuffer<MyGame::Sample::Monster>(nullptr);
+  return verifier.VerifySizePrefixedBuffer<::MyGame::Sample::Monster>(nullptr);
 }
 
 inline void FinishMonsterBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<MyGame::Sample::Monster> root) {
+    flatbuffers::Offset<::MyGame::Sample::Monster> root) {
   fbb.Finish(root);
 }
 
 inline void FinishSizePrefixedMonsterBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<MyGame::Sample::Monster> root) {
+    flatbuffers::Offset<::MyGame::Sample::Monster> root) {
   fbb.FinishSizePrefixed(root);
 }
 

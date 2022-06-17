@@ -694,7 +694,7 @@ inline flatbuffers::Offset<Movie> CreateMovieDirect(
     const std::vector<flatbuffers::Offset<void>> *characters = nullptr) {
   auto characters_type__ = characters_type ? _fbb.CreateVector<Character>(*characters_type) : 0;
   auto characters__ = characters ? _fbb.CreateVector<flatbuffers::Offset<void>>(*characters) : 0;
-  return CreateMovie(
+  return ::CreateMovie(
       _fbb,
       main_character_type,
       main_character,
@@ -725,7 +725,7 @@ inline flatbuffers::Offset<Attacker> CreateAttacker(flatbuffers::FlatBufferBuild
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const AttackerT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _sword_attack_damage = _o->sword_attack_damage;
-  return CreateAttacker(
+  return ::CreateAttacker(
       _fbb,
       _sword_attack_damage);
 }
@@ -751,7 +751,7 @@ inline flatbuffers::Offset<HandFan> CreateHandFan(flatbuffers::FlatBufferBuilder
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const HandFanT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _length = _o->length;
-  return CreateHandFan(
+  return ::CreateHandFan(
       _fbb,
       _length);
 }
@@ -783,7 +783,7 @@ inline flatbuffers::Offset<Movie> CreateMovie(flatbuffers::FlatBufferBuilder &_f
   auto _main_character = _o->main_character.Pack(_fbb);
   auto _characters_type = _o->characters.size() ? _fbb.CreateVector<Character>(_o->characters.size(), [](size_t i, _VectorArgs *__va) { return __va->__o->characters[i].type; }, &_va) : 0;
   auto _characters = _o->characters.size() ? _fbb.CreateVector<flatbuffers::Offset<void>>(_o->characters.size(), [](size_t i, _VectorArgs *__va) { return __va->__o->characters[i].Pack(*__va->__fbb, __va->__rehasher); }, &_va) : 0;
-  return CreateMovie(
+  return ::CreateMovie(
       _fbb,
       _main_character_type,
       _main_character,
@@ -1196,20 +1196,20 @@ inline const flatbuffers::TypeTable *MovieTypeTable() {
   return &tt;
 }
 
-inline const Movie *GetMovie(const void *buf) {
-  return flatbuffers::GetRoot<Movie>(buf);
+inline const ::Movie *GetMovie(const void *buf) {
+  return flatbuffers::GetRoot<::Movie>(buf);
 }
 
-inline const Movie *GetSizePrefixedMovie(const void *buf) {
-  return flatbuffers::GetSizePrefixedRoot<Movie>(buf);
+inline const ::Movie *GetSizePrefixedMovie(const void *buf) {
+  return flatbuffers::GetSizePrefixedRoot<::Movie>(buf);
 }
 
 inline Movie *GetMutableMovie(void *buf) {
   return flatbuffers::GetMutableRoot<Movie>(buf);
 }
 
-inline Movie *GetMutableSizePrefixedMovie(void *buf) {
-  return flatbuffers::GetMutableSizePrefixedRoot<Movie>(buf);
+inline ::Movie *GetMutableSizePrefixedMovie(void *buf) {
+  return flatbuffers::GetMutableSizePrefixedRoot<::Movie>(buf);
 }
 
 inline const char *MovieIdentifier() {
@@ -1228,23 +1228,23 @@ inline bool SizePrefixedMovieBufferHasIdentifier(const void *buf) {
 
 inline bool VerifyMovieBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifyBuffer<Movie>(MovieIdentifier());
+  return verifier.VerifyBuffer<::Movie>(MovieIdentifier());
 }
 
 inline bool VerifySizePrefixedMovieBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifySizePrefixedBuffer<Movie>(MovieIdentifier());
+  return verifier.VerifySizePrefixedBuffer<::Movie>(MovieIdentifier());
 }
 
 inline void FinishMovieBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<Movie> root) {
+    flatbuffers::Offset<::Movie> root) {
   fbb.Finish(root, MovieIdentifier());
 }
 
 inline void FinishSizePrefixedMovieBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<Movie> root) {
+    flatbuffers::Offset<::Movie> root) {
   fbb.FinishSizePrefixed(root, MovieIdentifier());
 }
 

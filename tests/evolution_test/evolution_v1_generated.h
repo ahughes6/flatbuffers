@@ -439,7 +439,7 @@ inline flatbuffers::Offset<Root> CreateRootDirect(
     flatbuffers::Offset<void> j = 0) {
   auto g__ = g ? _fbb.CreateVector<int32_t>(*g) : 0;
   auto h__ = h ? _fbb.CreateVector<flatbuffers::Offset<Evolution::V1::TableB>>(*h) : 0;
-  return Evolution::V1::CreateRoot(
+  return ::Evolution::V1::CreateRoot(
       _fbb,
       a,
       b,
@@ -484,33 +484,33 @@ inline bool VerifyUnionVector(flatbuffers::Verifier &verifier, const flatbuffers
   return true;
 }
 
-inline const Evolution::V1::Root *GetRoot(const void *buf) {
-  return flatbuffers::GetRoot<Evolution::V1::Root>(buf);
+inline const ::Evolution::V1::Root *GetRoot(const void *buf) {
+  return flatbuffers::GetRoot<::Evolution::V1::Root>(buf);
 }
 
-inline const Evolution::V1::Root *GetSizePrefixedRoot(const void *buf) {
-  return flatbuffers::GetSizePrefixedRoot<Evolution::V1::Root>(buf);
+inline const ::Evolution::V1::Root *GetSizePrefixedRoot(const void *buf) {
+  return flatbuffers::GetSizePrefixedRoot<::Evolution::V1::Root>(buf);
 }
 
 inline bool VerifyRootBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifyBuffer<Evolution::V1::Root>(nullptr);
+  return verifier.VerifyBuffer<::Evolution::V1::Root>(nullptr);
 }
 
 inline bool VerifySizePrefixedRootBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifySizePrefixedBuffer<Evolution::V1::Root>(nullptr);
+  return verifier.VerifySizePrefixedBuffer<::Evolution::V1::Root>(nullptr);
 }
 
 inline void FinishRootBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<Evolution::V1::Root> root) {
+    flatbuffers::Offset<::Evolution::V1::Root> root) {
   fbb.Finish(root);
 }
 
 inline void FinishSizePrefixedRootBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<Evolution::V1::Root> root) {
+    flatbuffers::Offset<::Evolution::V1::Root> root) {
   fbb.FinishSizePrefixed(root);
 }
 

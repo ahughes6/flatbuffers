@@ -316,7 +316,7 @@ inline flatbuffers::Offset<TableInNestedNS> CreateTableInNestedNS(flatbuffers::F
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const TableInNestedNST* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _foo = _o->foo;
-  return NamespaceA::NamespaceB::CreateTableInNestedNS(
+  return ::NamespaceA::NamespaceB::CreateTableInNestedNS(
       _fbb,
       _foo);
 }

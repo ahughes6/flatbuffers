@@ -1177,7 +1177,7 @@ inline flatbuffers::Offset<Stat> CreateStatDirect(
     int64_t val = 0,
     uint16_t count = 0) {
   auto id__ = id ? _fbb.CreateString(id) : 0;
-  return MyGame::Example::CreateStat(
+  return ::MyGame::Example::CreateStat(
       _fbb,
       id__,
       val,
@@ -1483,8 +1483,8 @@ struct Monster FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   flatbuffers::Vector<uint8_t> *mutable_testnestedflatbuffer() {
     return GetPointer<flatbuffers::Vector<uint8_t> *>(VT_TESTNESTEDFLATBUFFER);
   }
-  const MyGame::Example::Monster *testnestedflatbuffer_nested_root() const {
-    return flatbuffers::GetRoot<MyGame::Example::Monster>(testnestedflatbuffer()->Data());
+  const ::MyGame::Example::Monster *testnestedflatbuffer_nested_root() const {
+    return flatbuffers::GetRoot<::MyGame::Example::Monster>(testnestedflatbuffer()->Data());
   }
   const MyGame::Example::Stat *testempty() const {
     return GetPointer<const MyGame::Example::Stat *>(VT_TESTEMPTY);
@@ -1718,8 +1718,8 @@ struct Monster FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   flatbuffers::Vector<uint8_t> *mutable_testrequirednestedflatbuffer() {
     return GetPointer<flatbuffers::Vector<uint8_t> *>(VT_TESTREQUIREDNESTEDFLATBUFFER);
   }
-  const MyGame::Example::Monster *testrequirednestedflatbuffer_nested_root() const {
-    return flatbuffers::GetRoot<MyGame::Example::Monster>(testrequirednestedflatbuffer()->Data());
+  const ::MyGame::Example::Monster *testrequirednestedflatbuffer_nested_root() const {
+    return flatbuffers::GetRoot<::MyGame::Example::Monster>(testrequirednestedflatbuffer()->Data());
   }
   const flatbuffers::Vector<flatbuffers::Offset<MyGame::Example::Stat>> *scalar_key_sorted_tables() const {
     return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MyGame::Example::Stat>> *>(VT_SCALAR_KEY_SORTED_TABLES);
@@ -1827,7 +1827,7 @@ struct Monster FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
            verifier.VerifyTable(enemy()) &&
            VerifyOffset(verifier, VT_TESTNESTEDFLATBUFFER) &&
            verifier.VerifyVector(testnestedflatbuffer()) &&
-           verifier.VerifyNestedFlatBuffer<MyGame::Example::Monster>(testnestedflatbuffer(), nullptr) &&
+           verifier.VerifyNestedFlatBuffer<::MyGame::Example::Monster>(testnestedflatbuffer(), nullptr) &&
            VerifyOffset(verifier, VT_TESTEMPTY) &&
            verifier.VerifyTable(testempty()) &&
            VerifyField<uint8_t>(verifier, VT_TESTBOOL, 1) &&
@@ -1886,7 +1886,7 @@ struct Monster FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
            VerifyField<int8_t>(verifier, VT_SIGNED_ENUM, 1) &&
            VerifyOffset(verifier, VT_TESTREQUIREDNESTEDFLATBUFFER) &&
            verifier.VerifyVector(testrequirednestedflatbuffer()) &&
-           verifier.VerifyNestedFlatBuffer<MyGame::Example::Monster>(testrequirednestedflatbuffer(), nullptr) &&
+           verifier.VerifyNestedFlatBuffer<::MyGame::Example::Monster>(testrequirednestedflatbuffer(), nullptr) &&
            VerifyOffset(verifier, VT_SCALAR_KEY_SORTED_TABLES) &&
            verifier.VerifyVector(scalar_key_sorted_tables()) &&
            verifier.VerifyVectorOfTables(scalar_key_sorted_tables()) &&
@@ -2352,7 +2352,7 @@ inline flatbuffers::Offset<Monster> CreateMonsterDirect(
   auto vector_of_enums__ = vector_of_enums ? _fbb.CreateVector<MyGame::Example::Color>(*vector_of_enums) : 0;
   auto testrequirednestedflatbuffer__ = testrequirednestedflatbuffer ? _fbb.CreateVector<uint8_t>(*testrequirednestedflatbuffer) : 0;
   auto scalar_key_sorted_tables__ = scalar_key_sorted_tables ? _fbb.CreateVectorOfSortedTables<MyGame::Example::Stat>(scalar_key_sorted_tables) : 0;
-  return MyGame::Example::CreateMonster(
+  return ::MyGame::Example::CreateMonster(
       _fbb,
       pos,
       mana,
@@ -2680,7 +2680,7 @@ inline flatbuffers::Offset<TypeAliases> CreateTypeAliasesDirect(
     const std::vector<double> *vf64 = nullptr) {
   auto v8__ = v8 ? _fbb.CreateVector<int8_t>(*v8) : 0;
   auto vf64__ = vf64 ? _fbb.CreateVector<double>(*vf64) : 0;
-  return MyGame::Example::CreateTypeAliases(
+  return ::MyGame::Example::CreateTypeAliases(
       _fbb,
       i8,
       u8,
@@ -2719,7 +2719,7 @@ inline flatbuffers::Offset<InParentNamespace> CreateInParentNamespace(flatbuffer
   (void)_rehasher;
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const InParentNamespaceT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
-  return MyGame::CreateInParentNamespace(
+  return ::MyGame::CreateInParentNamespace(
       _fbb);
 }
 
@@ -2744,7 +2744,7 @@ inline flatbuffers::Offset<Monster> CreateMonster(flatbuffers::FlatBufferBuilder
   (void)_rehasher;
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const MonsterT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
-  return MyGame::Example2::CreateMonster(
+  return ::MyGame::Example2::CreateMonster(
       _fbb);
 }
 
@@ -2773,7 +2773,7 @@ inline flatbuffers::Offset<TestSimpleTableWithEnum> CreateTestSimpleTableWithEnu
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const TestSimpleTableWithEnumT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _color = _o->color;
-  return MyGame::Example::CreateTestSimpleTableWithEnum(
+  return ::MyGame::Example::CreateTestSimpleTableWithEnum(
       _fbb,
       _color);
 }
@@ -2803,7 +2803,7 @@ inline flatbuffers::Offset<Stat> CreateStat(flatbuffers::FlatBufferBuilder &_fbb
   auto _id = _o->id.empty() ? 0 : _fbb.CreateString(_o->id);
   auto _val = _o->val;
   auto _count = _o->count;
-  return MyGame::Example::CreateStat(
+  return ::MyGame::Example::CreateStat(
       _fbb,
       _id,
       _val,
@@ -2831,7 +2831,7 @@ inline flatbuffers::Offset<Referrable> CreateReferrable(flatbuffers::FlatBufferB
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const ReferrableT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _id = _o->id;
-  return MyGame::Example::CreateReferrable(
+  return ::MyGame::Example::CreateReferrable(
       _fbb,
       _id);
 }
@@ -3080,7 +3080,7 @@ inline flatbuffers::Offset<Monster> CreateMonster(flatbuffers::FlatBufferBuilder
   auto _native_inline = &_o->native_inline;
   auto _long_enum_non_enum_default = _o->long_enum_non_enum_default;
   auto _long_enum_normal_default = _o->long_enum_normal_default;
-  return MyGame::Example::CreateMonster(
+  return ::MyGame::Example::CreateMonster(
       _fbb,
       _pos,
       _mana,
@@ -3180,7 +3180,7 @@ inline flatbuffers::Offset<TypeAliases> CreateTypeAliases(flatbuffers::FlatBuffe
   auto _f64 = _o->f64;
   auto _v8 = _o->v8.size() ? _fbb.CreateVector(_o->v8) : 0;
   auto _vf64 = _o->vf64.size() ? _fbb.CreateVector(_o->vf64) : 0;
-  return MyGame::Example::CreateTypeAliases(
+  return ::MyGame::Example::CreateTypeAliases(
       _fbb,
       _i8,
       _u8,
@@ -4006,20 +4006,20 @@ inline const flatbuffers::TypeTable *TypeAliasesTypeTable() {
   return &tt;
 }
 
-inline const MyGame::Example::Monster *GetMonster(const void *buf) {
-  return flatbuffers::GetRoot<MyGame::Example::Monster>(buf);
+inline const ::MyGame::Example::Monster *GetMonster(const void *buf) {
+  return flatbuffers::GetRoot<::MyGame::Example::Monster>(buf);
 }
 
-inline const MyGame::Example::Monster *GetSizePrefixedMonster(const void *buf) {
-  return flatbuffers::GetSizePrefixedRoot<MyGame::Example::Monster>(buf);
+inline const ::MyGame::Example::Monster *GetSizePrefixedMonster(const void *buf) {
+  return flatbuffers::GetSizePrefixedRoot<::MyGame::Example::Monster>(buf);
 }
 
 inline Monster *GetMutableMonster(void *buf) {
   return flatbuffers::GetMutableRoot<Monster>(buf);
 }
 
-inline MyGame::Example::Monster *GetMutableSizePrefixedMonster(void *buf) {
-  return flatbuffers::GetMutableSizePrefixedRoot<MyGame::Example::Monster>(buf);
+inline ::MyGame::Example::Monster *GetMutableSizePrefixedMonster(void *buf) {
+  return flatbuffers::GetMutableSizePrefixedRoot<::MyGame::Example::Monster>(buf);
 }
 
 inline const char *MonsterIdentifier() {
@@ -4038,12 +4038,12 @@ inline bool SizePrefixedMonsterBufferHasIdentifier(const void *buf) {
 
 inline bool VerifyMonsterBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifyBuffer<MyGame::Example::Monster>(MonsterIdentifier());
+  return verifier.VerifyBuffer<::MyGame::Example::Monster>(MonsterIdentifier());
 }
 
 inline bool VerifySizePrefixedMonsterBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifySizePrefixedBuffer<MyGame::Example::Monster>(MonsterIdentifier());
+  return verifier.VerifySizePrefixedBuffer<::MyGame::Example::Monster>(MonsterIdentifier());
 }
 
 inline const char *MonsterExtension() {
@@ -4052,13 +4052,13 @@ inline const char *MonsterExtension() {
 
 inline void FinishMonsterBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<MyGame::Example::Monster> root) {
+    flatbuffers::Offset<::MyGame::Example::Monster> root) {
   fbb.Finish(root, MonsterIdentifier());
 }
 
 inline void FinishSizePrefixedMonsterBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<MyGame::Example::Monster> root) {
+    flatbuffers::Offset<::MyGame::Example::Monster> root) {
   fbb.FinishSizePrefixed(root, MonsterIdentifier());
 }
 

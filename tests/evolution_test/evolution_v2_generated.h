@@ -228,7 +228,7 @@ inline flatbuffers::Offset<TableA> CreateTableADirect(
     int32_t b = 0,
     const char *c = nullptr) {
   auto c__ = c ? _fbb.CreateString(c) : 0;
-  return Evolution::V2::CreateTableA(
+  return ::Evolution::V2::CreateTableA(
       _fbb,
       a,
       b,
@@ -333,7 +333,7 @@ inline flatbuffers::Offset<TableC> CreateTableCDirect(
     double a = 0.0,
     const char *b = nullptr) {
   auto b__ = b ? _fbb.CreateString(b) : 0;
-  return Evolution::V2::CreateTableC(
+  return ::Evolution::V2::CreateTableC(
       _fbb,
       a,
       b__);
@@ -523,7 +523,7 @@ inline flatbuffers::Offset<Root> CreateRootDirect(
     uint8_t l = 56) {
   auto g__ = g ? _fbb.CreateVector<int32_t>(*g) : 0;
   auto h__ = h ? _fbb.CreateVector<flatbuffers::Offset<Evolution::V2::TableB>>(*h) : 0;
-  return Evolution::V2::CreateRoot(
+  return ::Evolution::V2::CreateRoot(
       _fbb,
       b,
       c_type,
@@ -571,33 +571,33 @@ inline bool VerifyUnionVector(flatbuffers::Verifier &verifier, const flatbuffers
   return true;
 }
 
-inline const Evolution::V2::Root *GetRoot(const void *buf) {
-  return flatbuffers::GetRoot<Evolution::V2::Root>(buf);
+inline const ::Evolution::V2::Root *GetRoot(const void *buf) {
+  return flatbuffers::GetRoot<::Evolution::V2::Root>(buf);
 }
 
-inline const Evolution::V2::Root *GetSizePrefixedRoot(const void *buf) {
-  return flatbuffers::GetSizePrefixedRoot<Evolution::V2::Root>(buf);
+inline const ::Evolution::V2::Root *GetSizePrefixedRoot(const void *buf) {
+  return flatbuffers::GetSizePrefixedRoot<::Evolution::V2::Root>(buf);
 }
 
 inline bool VerifyRootBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifyBuffer<Evolution::V2::Root>(nullptr);
+  return verifier.VerifyBuffer<::Evolution::V2::Root>(nullptr);
 }
 
 inline bool VerifySizePrefixedRootBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifySizePrefixedBuffer<Evolution::V2::Root>(nullptr);
+  return verifier.VerifySizePrefixedBuffer<::Evolution::V2::Root>(nullptr);
 }
 
 inline void FinishRootBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<Evolution::V2::Root> root) {
+    flatbuffers::Offset<::Evolution::V2::Root> root) {
   fbb.Finish(root);
 }
 
 inline void FinishSizePrefixedRootBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<Evolution::V2::Root> root) {
+    flatbuffers::Offset<::Evolution::V2::Root> root) {
   fbb.FinishSizePrefixed(root);
 }
 

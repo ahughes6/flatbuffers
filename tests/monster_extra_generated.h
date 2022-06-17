@@ -222,7 +222,7 @@ inline flatbuffers::Offset<MonsterExtra> CreateMonsterExtraDirect(
     const std::vector<float> *fvec = nullptr) {
   auto dvec__ = dvec ? _fbb.CreateVector<double>(*dvec) : 0;
   auto fvec__ = fvec ? _fbb.CreateVector<float>(*fvec) : 0;
-  return MyGame::CreateMonsterExtra(
+  return ::MyGame::CreateMonsterExtra(
       _fbb,
       d0,
       d1,
@@ -297,7 +297,7 @@ inline flatbuffers::Offset<MonsterExtra> CreateMonsterExtra(flatbuffers::FlatBuf
   auto _f3 = _o->f3;
   auto _dvec = _o->dvec.size() ? _fbb.CreateVector(_o->dvec) : 0;
   auto _fvec = _o->fvec.size() ? _fbb.CreateVector(_o->fvec) : 0;
-  return MyGame::CreateMonsterExtra(
+  return ::MyGame::CreateMonsterExtra(
       _fbb,
       _d0,
       _d1,
@@ -344,20 +344,20 @@ inline const flatbuffers::TypeTable *MonsterExtraTypeTable() {
   return &tt;
 }
 
-inline const MyGame::MonsterExtra *GetMonsterExtra(const void *buf) {
-  return flatbuffers::GetRoot<MyGame::MonsterExtra>(buf);
+inline const ::MyGame::MonsterExtra *GetMonsterExtra(const void *buf) {
+  return flatbuffers::GetRoot<::MyGame::MonsterExtra>(buf);
 }
 
-inline const MyGame::MonsterExtra *GetSizePrefixedMonsterExtra(const void *buf) {
-  return flatbuffers::GetSizePrefixedRoot<MyGame::MonsterExtra>(buf);
+inline const ::MyGame::MonsterExtra *GetSizePrefixedMonsterExtra(const void *buf) {
+  return flatbuffers::GetSizePrefixedRoot<::MyGame::MonsterExtra>(buf);
 }
 
 inline MonsterExtra *GetMutableMonsterExtra(void *buf) {
   return flatbuffers::GetMutableRoot<MonsterExtra>(buf);
 }
 
-inline MyGame::MonsterExtra *GetMutableSizePrefixedMonsterExtra(void *buf) {
-  return flatbuffers::GetMutableSizePrefixedRoot<MyGame::MonsterExtra>(buf);
+inline ::MyGame::MonsterExtra *GetMutableSizePrefixedMonsterExtra(void *buf) {
+  return flatbuffers::GetMutableSizePrefixedRoot<::MyGame::MonsterExtra>(buf);
 }
 
 inline const char *MonsterExtraIdentifier() {
@@ -376,12 +376,12 @@ inline bool SizePrefixedMonsterExtraBufferHasIdentifier(const void *buf) {
 
 inline bool VerifyMonsterExtraBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifyBuffer<MyGame::MonsterExtra>(MonsterExtraIdentifier());
+  return verifier.VerifyBuffer<::MyGame::MonsterExtra>(MonsterExtraIdentifier());
 }
 
 inline bool VerifySizePrefixedMonsterExtraBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifySizePrefixedBuffer<MyGame::MonsterExtra>(MonsterExtraIdentifier());
+  return verifier.VerifySizePrefixedBuffer<::MyGame::MonsterExtra>(MonsterExtraIdentifier());
 }
 
 inline const char *MonsterExtraExtension() {
@@ -390,13 +390,13 @@ inline const char *MonsterExtraExtension() {
 
 inline void FinishMonsterExtraBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<MyGame::MonsterExtra> root) {
+    flatbuffers::Offset<::MyGame::MonsterExtra> root) {
   fbb.Finish(root, MonsterExtraIdentifier());
 }
 
 inline void FinishSizePrefixedMonsterExtraBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<MyGame::MonsterExtra> root) {
+    flatbuffers::Offset<::MyGame::MonsterExtra> root) {
   fbb.FinishSizePrefixed(root, MonsterExtraIdentifier());
 }
 

@@ -372,7 +372,7 @@ inline flatbuffers::Offset<ArrayTable> CreateArrayTable(flatbuffers::FlatBufferB
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const ArrayTableT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _a = _o->a ? _o->a.get() : 0;
-  return MyGame::Example::CreateArrayTable(
+  return ::MyGame::Example::CreateArrayTable(
       _fbb,
       _a);
 }
@@ -465,20 +465,20 @@ inline const flatbuffers::TypeTable *ArrayTableTypeTable() {
   return &tt;
 }
 
-inline const MyGame::Example::ArrayTable *GetArrayTable(const void *buf) {
-  return flatbuffers::GetRoot<MyGame::Example::ArrayTable>(buf);
+inline const ::MyGame::Example::ArrayTable *GetArrayTable(const void *buf) {
+  return flatbuffers::GetRoot<::MyGame::Example::ArrayTable>(buf);
 }
 
-inline const MyGame::Example::ArrayTable *GetSizePrefixedArrayTable(const void *buf) {
-  return flatbuffers::GetSizePrefixedRoot<MyGame::Example::ArrayTable>(buf);
+inline const ::MyGame::Example::ArrayTable *GetSizePrefixedArrayTable(const void *buf) {
+  return flatbuffers::GetSizePrefixedRoot<::MyGame::Example::ArrayTable>(buf);
 }
 
 inline ArrayTable *GetMutableArrayTable(void *buf) {
   return flatbuffers::GetMutableRoot<ArrayTable>(buf);
 }
 
-inline MyGame::Example::ArrayTable *GetMutableSizePrefixedArrayTable(void *buf) {
-  return flatbuffers::GetMutableSizePrefixedRoot<MyGame::Example::ArrayTable>(buf);
+inline ::MyGame::Example::ArrayTable *GetMutableSizePrefixedArrayTable(void *buf) {
+  return flatbuffers::GetMutableSizePrefixedRoot<::MyGame::Example::ArrayTable>(buf);
 }
 
 inline const char *ArrayTableIdentifier() {
@@ -497,12 +497,12 @@ inline bool SizePrefixedArrayTableBufferHasIdentifier(const void *buf) {
 
 inline bool VerifyArrayTableBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifyBuffer<MyGame::Example::ArrayTable>(ArrayTableIdentifier());
+  return verifier.VerifyBuffer<::MyGame::Example::ArrayTable>(ArrayTableIdentifier());
 }
 
 inline bool VerifySizePrefixedArrayTableBuffer(
     flatbuffers::Verifier &verifier) {
-  return verifier.VerifySizePrefixedBuffer<MyGame::Example::ArrayTable>(ArrayTableIdentifier());
+  return verifier.VerifySizePrefixedBuffer<::MyGame::Example::ArrayTable>(ArrayTableIdentifier());
 }
 
 inline const char *ArrayTableExtension() {
@@ -511,13 +511,13 @@ inline const char *ArrayTableExtension() {
 
 inline void FinishArrayTableBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<MyGame::Example::ArrayTable> root) {
+    flatbuffers::Offset<::MyGame::Example::ArrayTable> root) {
   fbb.Finish(root, ArrayTableIdentifier());
 }
 
 inline void FinishSizePrefixedArrayTableBuffer(
     flatbuffers::FlatBufferBuilder &fbb,
-    flatbuffers::Offset<MyGame::Example::ArrayTable> root) {
+    flatbuffers::Offset<::MyGame::Example::ArrayTable> root) {
   fbb.FinishSizePrefixed(root, ArrayTableIdentifier());
 }
 
