@@ -400,16 +400,16 @@ inline void FinishSizePrefixedMonsterExtraBuffer(
   fbb.FinishSizePrefixed(root, MonsterExtraIdentifier());
 }
 
-inline flatbuffers::unique_ptr<MyGame::MonsterExtraT> UnPackMonsterExtra(
+inline flatbuffers::unique_ptr<::MyGame::MonsterExtraT> UnPackMonsterExtra(
     const void *buf,
     const flatbuffers::resolver_function_t *res = nullptr) {
-  return flatbuffers::unique_ptr<MyGame::MonsterExtraT>(GetMonsterExtra(buf)->UnPack(res));
+  return flatbuffers::unique_ptr<::MyGame::MonsterExtraT>(GetMonsterExtra(buf)->UnPack(res));
 }
 
-inline flatbuffers::unique_ptr<MyGame::MonsterExtraT> UnPackSizePrefixedMonsterExtra(
+inline flatbuffers::unique_ptr<::MyGame::MonsterExtraT> UnPackSizePrefixedMonsterExtra(
     const void *buf,
     const flatbuffers::resolver_function_t *res = nullptr) {
-  return flatbuffers::unique_ptr<MyGame::MonsterExtraT>(GetSizePrefixedMonsterExtra(buf)->UnPack(res));
+  return flatbuffers::unique_ptr<::MyGame::MonsterExtraT>(GetSizePrefixedMonsterExtra(buf)->UnPack(res));
 }
 
 }  // namespace MyGame

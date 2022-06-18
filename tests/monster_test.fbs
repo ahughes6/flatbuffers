@@ -2,15 +2,15 @@
 
 include "include_test1.fbs";
 
-namespace MyGame;
+namespace MyGame.Some.Repeated.MyGame;
 
 table InParentNamespace {}
 
-namespace MyGame.Example2;
+namespace MyGame.Some.Repeated.MyGame.Example2;
 
 table Monster {}  // Test having same name as below, but in different namespace.
 
-namespace MyGame.Example;
+namespace MyGame.Some.Repeated.MyGame.Example;
 
 attribute "priority";
 
@@ -39,9 +39,9 @@ enum LongEnum:ulong (bit_flags) {
   LongBig = 40,
 }
 
-union Any { Monster, TestSimpleTableWithEnum, MyGame.Example2.Monster }
+union Any { Monster, TestSimpleTableWithEnum, MyGame.Some.Repeated.MyGame.Example2.Monster }
 
-union AnyUniqueAliases { M: Monster, TS: TestSimpleTableWithEnum, M2: MyGame.Example2.Monster }
+union AnyUniqueAliases { M: Monster, TS: TestSimpleTableWithEnum, M2: MyGame.Some.Repeated.MyGame.Example2.Monster }
 union AnyAmbiguousAliases { M1: Monster, M2: Monster, M3: Monster }
 
 struct Test { a:short; b:byte; }
@@ -100,7 +100,7 @@ table Monster {
   testarrayofstring2:[string] (id: 28);
   testarrayofbools:[bool] (id: 24);
   testarrayofsortedstruct:[Ability] (id: 29);
-  enemy:MyGame.Example.Monster (id:12);  // Test referring by full namespace.
+  enemy:MyGame.Some.Repeated.MyGame.Example.Monster (id:12);  // Test referring by full namespace.
   test:Any (id: 8);
   test4:[Test] (id: 9);
   test5:[Test] (id: 31);

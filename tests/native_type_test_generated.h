@@ -129,17 +129,17 @@ struct ApplicationData FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_VECTORS = 4,
     VT_VECTORS_ALT = 6
   };
-  const flatbuffers::Vector<const Geometry::Vector3D *> *vectors() const {
-    return GetPointer<const flatbuffers::Vector<const Geometry::Vector3D *> *>(VT_VECTORS);
+  const flatbuffers::Vector<const ::Geometry::Vector3D *> *vectors() const {
+    return GetPointer<const flatbuffers::Vector<const ::Geometry::Vector3D *> *>(VT_VECTORS);
   }
-  flatbuffers::Vector<const Geometry::Vector3D *> *mutable_vectors() {
-    return GetPointer<flatbuffers::Vector<const Geometry::Vector3D *> *>(VT_VECTORS);
+  flatbuffers::Vector<const ::Geometry::Vector3D *> *mutable_vectors() {
+    return GetPointer<flatbuffers::Vector<const ::Geometry::Vector3D *> *>(VT_VECTORS);
   }
-  const flatbuffers::Vector<const Geometry::Vector3DAlt *> *vectors_alt() const {
-    return GetPointer<const flatbuffers::Vector<const Geometry::Vector3DAlt *> *>(VT_VECTORS_ALT);
+  const flatbuffers::Vector<const ::Geometry::Vector3DAlt *> *vectors_alt() const {
+    return GetPointer<const flatbuffers::Vector<const ::Geometry::Vector3DAlt *> *>(VT_VECTORS_ALT);
   }
-  flatbuffers::Vector<const Geometry::Vector3DAlt *> *mutable_vectors_alt() {
-    return GetPointer<flatbuffers::Vector<const Geometry::Vector3DAlt *> *>(VT_VECTORS_ALT);
+  flatbuffers::Vector<const ::Geometry::Vector3DAlt *> *mutable_vectors_alt() {
+    return GetPointer<flatbuffers::Vector<const ::Geometry::Vector3DAlt *> *>(VT_VECTORS_ALT);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -158,10 +158,10 @@ struct ApplicationDataBuilder {
   typedef ApplicationData Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_vectors(flatbuffers::Offset<flatbuffers::Vector<const Geometry::Vector3D *>> vectors) {
+  void add_vectors(flatbuffers::Offset<flatbuffers::Vector<const ::Geometry::Vector3D *>> vectors) {
     fbb_.AddOffset(ApplicationData::VT_VECTORS, vectors);
   }
-  void add_vectors_alt(flatbuffers::Offset<flatbuffers::Vector<const Geometry::Vector3DAlt *>> vectors_alt) {
+  void add_vectors_alt(flatbuffers::Offset<flatbuffers::Vector<const ::Geometry::Vector3DAlt *>> vectors_alt) {
     fbb_.AddOffset(ApplicationData::VT_VECTORS_ALT, vectors_alt);
   }
   explicit ApplicationDataBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -177,8 +177,8 @@ struct ApplicationDataBuilder {
 
 inline flatbuffers::Offset<ApplicationData> CreateApplicationData(
     flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<flatbuffers::Vector<const Geometry::Vector3D *>> vectors = 0,
-    flatbuffers::Offset<flatbuffers::Vector<const Geometry::Vector3DAlt *>> vectors_alt = 0) {
+    flatbuffers::Offset<flatbuffers::Vector<const ::Geometry::Vector3D *>> vectors = 0,
+    flatbuffers::Offset<flatbuffers::Vector<const ::Geometry::Vector3DAlt *>> vectors_alt = 0) {
   ApplicationDataBuilder builder_(_fbb);
   builder_.add_vectors_alt(vectors_alt);
   builder_.add_vectors(vectors);
@@ -187,10 +187,10 @@ inline flatbuffers::Offset<ApplicationData> CreateApplicationData(
 
 inline flatbuffers::Offset<ApplicationData> CreateApplicationDataDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
-    const std::vector<Geometry::Vector3D> *vectors = nullptr,
-    const std::vector<Geometry::Vector3DAlt> *vectors_alt = nullptr) {
-  auto vectors__ = vectors ? _fbb.CreateVectorOfStructs<Geometry::Vector3D>(*vectors) : 0;
-  auto vectors_alt__ = vectors_alt ? _fbb.CreateVectorOfStructs<Geometry::Vector3DAlt>(*vectors_alt) : 0;
+    const std::vector<::Geometry::Vector3D> *vectors = nullptr,
+    const std::vector<::Geometry::Vector3DAlt> *vectors_alt = nullptr) {
+  auto vectors__ = vectors ? _fbb.CreateVectorOfStructs<::Geometry::Vector3D>(*vectors) : 0;
+  auto vectors_alt__ = vectors_alt ? _fbb.CreateVectorOfStructs<::Geometry::Vector3DAlt>(*vectors_alt) : 0;
   return ::Geometry::CreateApplicationData(
       _fbb,
       vectors__,
@@ -220,8 +220,8 @@ inline flatbuffers::Offset<ApplicationData> CreateApplicationData(flatbuffers::F
   (void)_rehasher;
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const ApplicationDataT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
-  auto _vectors = _o->vectors.size() ? _fbb.CreateVectorOfNativeStructs<Geometry::Vector3D, Native::Vector3D>(_o->vectors) : 0;
-  auto _vectors_alt = _o->vectors_alt.size() ? _fbb.CreateVectorOfNativeStructs<Geometry::Vector3DAlt, Native::Vector3D>(_o->vectors_alt, flatbuffers::PackVector3DAlt) : 0;
+  auto _vectors = _o->vectors.size() ? _fbb.CreateVectorOfNativeStructs<::Geometry::Vector3D, Native::Vector3D>(_o->vectors) : 0;
+  auto _vectors_alt = _o->vectors_alt.size() ? _fbb.CreateVectorOfNativeStructs<::Geometry::Vector3DAlt, Native::Vector3D>(_o->vectors_alt, flatbuffers::PackVector3DAlt) : 0;
   return ::Geometry::CreateApplicationData(
       _fbb,
       _vectors,
@@ -270,8 +270,8 @@ inline const flatbuffers::TypeTable *ApplicationDataTypeTable() {
     { flatbuffers::ET_SEQUENCE, 1, 1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    Geometry::Vector3DTypeTable,
-    Geometry::Vector3DAltTypeTable
+    ::Geometry::Vector3DTypeTable,
+    ::Geometry::Vector3DAltTypeTable
   };
   static const char * const names[] = {
     "vectors",
@@ -321,16 +321,16 @@ inline void FinishSizePrefixedApplicationDataBuffer(
   fbb.FinishSizePrefixed(root);
 }
 
-inline flatbuffers::unique_ptr<Geometry::ApplicationDataT> UnPackApplicationData(
+inline flatbuffers::unique_ptr<::Geometry::ApplicationDataT> UnPackApplicationData(
     const void *buf,
     const flatbuffers::resolver_function_t *res = nullptr) {
-  return flatbuffers::unique_ptr<Geometry::ApplicationDataT>(GetApplicationData(buf)->UnPack(res));
+  return flatbuffers::unique_ptr<::Geometry::ApplicationDataT>(GetApplicationData(buf)->UnPack(res));
 }
 
-inline flatbuffers::unique_ptr<Geometry::ApplicationDataT> UnPackSizePrefixedApplicationData(
+inline flatbuffers::unique_ptr<::Geometry::ApplicationDataT> UnPackSizePrefixedApplicationData(
     const void *buf,
     const flatbuffers::resolver_function_t *res = nullptr) {
-  return flatbuffers::unique_ptr<Geometry::ApplicationDataT>(GetSizePrefixedApplicationData(buf)->UnPack(res));
+  return flatbuffers::unique_ptr<::Geometry::ApplicationDataT>(GetSizePrefixedApplicationData(buf)->UnPack(res));
 }
 
 }  // namespace Geometry

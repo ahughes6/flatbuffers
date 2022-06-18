@@ -121,37 +121,37 @@ struct CharacterUnion {
   static void *UnPack(const void *obj, Character type, const flatbuffers::resolver_function_t *resolver);
   flatbuffers::Offset<void> Pack(flatbuffers::FlatBufferBuilder &_fbb, const flatbuffers::rehasher_function_t *_rehasher = nullptr) const;
 
-  AttackerT *AsMuLan() {
+  ::AttackerT *AsMuLan() {
     return type == Character_MuLan ?
-      reinterpret_cast<AttackerT *>(value) : nullptr;
+      reinterpret_cast<::AttackerT *>(value) : nullptr;
   }
-  const AttackerT *AsMuLan() const {
+  const ::AttackerT *AsMuLan() const {
     return type == Character_MuLan ?
-      reinterpret_cast<const AttackerT *>(value) : nullptr;
+      reinterpret_cast<const ::AttackerT *>(value) : nullptr;
   }
-  Rapunzel *AsRapunzel() {
+  ::Rapunzel *AsRapunzel() {
     return type == Character_Rapunzel ?
-      reinterpret_cast<Rapunzel *>(value) : nullptr;
+      reinterpret_cast<::Rapunzel *>(value) : nullptr;
   }
-  const Rapunzel *AsRapunzel() const {
+  const ::Rapunzel *AsRapunzel() const {
     return type == Character_Rapunzel ?
-      reinterpret_cast<const Rapunzel *>(value) : nullptr;
+      reinterpret_cast<const ::Rapunzel *>(value) : nullptr;
   }
-  BookReader *AsBelle() {
+  ::BookReader *AsBelle() {
     return type == Character_Belle ?
-      reinterpret_cast<BookReader *>(value) : nullptr;
+      reinterpret_cast<::BookReader *>(value) : nullptr;
   }
-  const BookReader *AsBelle() const {
+  const ::BookReader *AsBelle() const {
     return type == Character_Belle ?
-      reinterpret_cast<const BookReader *>(value) : nullptr;
+      reinterpret_cast<const ::BookReader *>(value) : nullptr;
   }
-  BookReader *AsBookFan() {
+  ::BookReader *AsBookFan() {
     return type == Character_BookFan ?
-      reinterpret_cast<BookReader *>(value) : nullptr;
+      reinterpret_cast<::BookReader *>(value) : nullptr;
   }
-  const BookReader *AsBookFan() const {
+  const ::BookReader *AsBookFan() const {
     return type == Character_BookFan ?
-      reinterpret_cast<const BookReader *>(value) : nullptr;
+      reinterpret_cast<const ::BookReader *>(value) : nullptr;
   }
   std::string *AsOther() {
     return type == Character_Other ?
@@ -179,20 +179,20 @@ inline bool operator==(const CharacterUnion &lhs, const CharacterUnion &rhs) {
       return true;
     }
     case Character_MuLan: {
-      return *(reinterpret_cast<const AttackerT *>(lhs.value)) ==
-             *(reinterpret_cast<const AttackerT *>(rhs.value));
+      return *(reinterpret_cast<const ::AttackerT *>(lhs.value)) ==
+             *(reinterpret_cast<const ::AttackerT *>(rhs.value));
     }
     case Character_Rapunzel: {
-      return *(reinterpret_cast<const Rapunzel *>(lhs.value)) ==
-             *(reinterpret_cast<const Rapunzel *>(rhs.value));
+      return *(reinterpret_cast<const ::Rapunzel *>(lhs.value)) ==
+             *(reinterpret_cast<const ::Rapunzel *>(rhs.value));
     }
     case Character_Belle: {
-      return *(reinterpret_cast<const BookReader *>(lhs.value)) ==
-             *(reinterpret_cast<const BookReader *>(rhs.value));
+      return *(reinterpret_cast<const ::BookReader *>(lhs.value)) ==
+             *(reinterpret_cast<const ::BookReader *>(rhs.value));
     }
     case Character_BookFan: {
-      return *(reinterpret_cast<const BookReader *>(lhs.value)) ==
-             *(reinterpret_cast<const BookReader *>(rhs.value));
+      return *(reinterpret_cast<const ::BookReader *>(lhs.value)) ==
+             *(reinterpret_cast<const ::BookReader *>(rhs.value));
     }
     case Character_Other: {
       return *(reinterpret_cast<const std::string *>(lhs.value)) ==
@@ -252,11 +252,11 @@ template<typename T> struct GadgetTraits {
   static const Gadget enum_value = Gadget_NONE;
 };
 
-template<> struct GadgetTraits<FallingTub> {
+template<> struct GadgetTraits<::FallingTub> {
   static const Gadget enum_value = Gadget_FallingTub;
 };
 
-template<> struct GadgetTraits<HandFan> {
+template<> struct GadgetTraits<::HandFan> {
   static const Gadget enum_value = Gadget_HandFan;
 };
 
@@ -264,11 +264,11 @@ template<typename T> struct GadgetUnionTraits {
   static const Gadget enum_value = Gadget_NONE;
 };
 
-template<> struct GadgetUnionTraits<FallingTub> {
+template<> struct GadgetUnionTraits<::FallingTub> {
   static const Gadget enum_value = Gadget_FallingTub;
 };
 
-template<> struct GadgetUnionTraits<HandFanT> {
+template<> struct GadgetUnionTraits<::HandFanT> {
   static const Gadget enum_value = Gadget_HandFan;
 };
 
@@ -302,21 +302,21 @@ struct GadgetUnion {
   static void *UnPack(const void *obj, Gadget type, const flatbuffers::resolver_function_t *resolver);
   flatbuffers::Offset<void> Pack(flatbuffers::FlatBufferBuilder &_fbb, const flatbuffers::rehasher_function_t *_rehasher = nullptr) const;
 
-  FallingTub *AsFallingTub() {
+  ::FallingTub *AsFallingTub() {
     return type == Gadget_FallingTub ?
-      reinterpret_cast<FallingTub *>(value) : nullptr;
+      reinterpret_cast<::FallingTub *>(value) : nullptr;
   }
-  const FallingTub *AsFallingTub() const {
+  const ::FallingTub *AsFallingTub() const {
     return type == Gadget_FallingTub ?
-      reinterpret_cast<const FallingTub *>(value) : nullptr;
+      reinterpret_cast<const ::FallingTub *>(value) : nullptr;
   }
-  HandFanT *AsHandFan() {
+  ::HandFanT *AsHandFan() {
     return type == Gadget_HandFan ?
-      reinterpret_cast<HandFanT *>(value) : nullptr;
+      reinterpret_cast<::HandFanT *>(value) : nullptr;
   }
-  const HandFanT *AsHandFan() const {
+  const ::HandFanT *AsHandFan() const {
     return type == Gadget_HandFan ?
-      reinterpret_cast<const HandFanT *>(value) : nullptr;
+      reinterpret_cast<const ::HandFanT *>(value) : nullptr;
   }
 };
 
@@ -328,12 +328,12 @@ inline bool operator==(const GadgetUnion &lhs, const GadgetUnion &rhs) {
       return true;
     }
     case Gadget_FallingTub: {
-      return *(reinterpret_cast<const FallingTub *>(lhs.value)) ==
-             *(reinterpret_cast<const FallingTub *>(rhs.value));
+      return *(reinterpret_cast<const ::FallingTub *>(lhs.value)) ==
+             *(reinterpret_cast<const ::FallingTub *>(rhs.value));
     }
     case Gadget_HandFan: {
-      return *(reinterpret_cast<const HandFanT *>(lhs.value)) ==
-             *(reinterpret_cast<const HandFanT *>(rhs.value));
+      return *(reinterpret_cast<const ::HandFanT *>(lhs.value)) ==
+             *(reinterpret_cast<const ::HandFanT *>(rhs.value));
     }
     default: {
       return false;
@@ -589,8 +589,8 @@ struct MovieT : public flatbuffers::NativeTable {
   static FLATBUFFERS_CONSTEXPR_CPP11 const char *GetFullyQualifiedName() {
     return "MovieT";
   }
-  CharacterUnion main_character{};
-  std::vector<CharacterUnion> characters{};
+  ::CharacterUnion main_character{};
+  std::vector<::CharacterUnion> characters{};
 };
 
 struct Movie FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
@@ -608,29 +608,29 @@ struct Movie FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_CHARACTERS_TYPE = 8,
     VT_CHARACTERS = 10
   };
-  Character main_character_type() const {
-    return static_cast<Character>(GetField<uint8_t>(VT_MAIN_CHARACTER_TYPE, 0));
+  ::Character main_character_type() const {
+    return static_cast<::Character>(GetField<uint8_t>(VT_MAIN_CHARACTER_TYPE, 0));
   }
   const void *main_character() const {
     return GetPointer<const void *>(VT_MAIN_CHARACTER);
   }
-  const Attacker *main_character_as_MuLan() const {
-    return main_character_type() == Character_MuLan ? static_cast<const Attacker *>(main_character()) : nullptr;
+  const ::Attacker *main_character_as_MuLan() const {
+    return main_character_type() == ::Character_MuLan ? static_cast<const ::Attacker *>(main_character()) : nullptr;
   }
-  const Rapunzel *main_character_as_Rapunzel() const {
-    return main_character_type() == Character_Rapunzel ? static_cast<const Rapunzel *>(main_character()) : nullptr;
+  const ::Rapunzel *main_character_as_Rapunzel() const {
+    return main_character_type() == ::Character_Rapunzel ? static_cast<const ::Rapunzel *>(main_character()) : nullptr;
   }
-  const BookReader *main_character_as_Belle() const {
-    return main_character_type() == Character_Belle ? static_cast<const BookReader *>(main_character()) : nullptr;
+  const ::BookReader *main_character_as_Belle() const {
+    return main_character_type() == ::Character_Belle ? static_cast<const ::BookReader *>(main_character()) : nullptr;
   }
-  const BookReader *main_character_as_BookFan() const {
-    return main_character_type() == Character_BookFan ? static_cast<const BookReader *>(main_character()) : nullptr;
+  const ::BookReader *main_character_as_BookFan() const {
+    return main_character_type() == ::Character_BookFan ? static_cast<const ::BookReader *>(main_character()) : nullptr;
   }
   const flatbuffers::String *main_character_as_Other() const {
-    return main_character_type() == Character_Other ? static_cast<const flatbuffers::String *>(main_character()) : nullptr;
+    return main_character_type() == ::Character_Other ? static_cast<const flatbuffers::String *>(main_character()) : nullptr;
   }
   const flatbuffers::String *main_character_as_Unused() const {
-    return main_character_type() == Character_Unused ? static_cast<const flatbuffers::String *>(main_character()) : nullptr;
+    return main_character_type() == ::Character_Unused ? static_cast<const flatbuffers::String *>(main_character()) : nullptr;
   }
   void *mutable_main_character() {
     return GetPointer<void *>(VT_MAIN_CHARACTER);
@@ -668,7 +668,7 @@ struct MovieBuilder {
   typedef Movie Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_main_character_type(Character main_character_type) {
+  void add_main_character_type(::Character main_character_type) {
     fbb_.AddElement<uint8_t>(Movie::VT_MAIN_CHARACTER_TYPE, static_cast<uint8_t>(main_character_type), 0);
   }
   void add_main_character(flatbuffers::Offset<void> main_character) {
@@ -693,7 +693,7 @@ struct MovieBuilder {
 
 inline flatbuffers::Offset<Movie> CreateMovie(
     flatbuffers::FlatBufferBuilder &_fbb,
-    Character main_character_type = Character_NONE,
+    ::Character main_character_type = ::Character_NONE,
     flatbuffers::Offset<void> main_character = 0,
     flatbuffers::Offset<flatbuffers::Vector<uint8_t>> characters_type = 0,
     flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<void>>> characters = 0) {
@@ -707,7 +707,7 @@ inline flatbuffers::Offset<Movie> CreateMovie(
 
 inline flatbuffers::Offset<Movie> CreateMovieDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
-    Character main_character_type = Character_NONE,
+    ::Character main_character_type = ::Character_NONE,
     flatbuffers::Offset<void> main_character = 0,
     const std::vector<uint8_t> *characters_type = nullptr,
     const std::vector<flatbuffers::Offset<void>> *characters = nullptr) {
@@ -819,9 +819,9 @@ inline void Movie::UnPackTo(MovieT *_o, const flatbuffers::resolver_function_t *
   (void)_o;
   (void)_resolver;
   { auto _e = main_character_type(); _o->main_character.type = _e; }
-  { auto _e = main_character(); if (_e) _o->main_character.value = CharacterUnion::UnPack(_e, main_character_type(), _resolver); }
-  { auto _e = characters_type(); if (_e) { _o->characters.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->characters[_i].type = static_cast<Character>(_e->Get(_i)); } } }
-  { auto _e = characters(); if (_e) { _o->characters.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->characters[_i].value = CharacterUnion::UnPack(_e->Get(_i), characters_type()->GetEnum<Character>(_i), _resolver); } } }
+  { auto _e = main_character(); if (_e) _o->main_character.value = ::CharacterUnion::UnPack(_e, main_character_type(), _resolver); }
+  { auto _e = characters_type(); if (_e) { _o->characters.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->characters[_i].type = static_cast<::Character>(_e->Get(_i)); } } }
+  { auto _e = characters(); if (_e) { _o->characters.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->characters[_i].value = ::CharacterUnion::UnPack(_e->Get(_i), characters_type()->GetEnum<Character>(_i), _resolver); } } }
 }
 
 inline flatbuffers::Offset<Movie> Movie::Pack(flatbuffers::FlatBufferBuilder &_fbb, const MovieT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -850,17 +850,17 @@ inline bool VerifyCharacter(flatbuffers::Verifier &verifier, const void *obj, Ch
       return true;
     }
     case Character_MuLan: {
-      auto ptr = reinterpret_cast<const Attacker *>(obj);
+      auto ptr = reinterpret_cast<const ::Attacker *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case Character_Rapunzel: {
-      return verifier.VerifyField<Rapunzel>(static_cast<const uint8_t *>(obj), 0, 4);
+      return verifier.VerifyField<::Rapunzel>(static_cast<const uint8_t *>(obj), 0, 4);
     }
     case Character_Belle: {
-      return verifier.VerifyField<BookReader>(static_cast<const uint8_t *>(obj), 0, 4);
+      return verifier.VerifyField<::BookReader>(static_cast<const uint8_t *>(obj), 0, 4);
     }
     case Character_BookFan: {
-      return verifier.VerifyField<BookReader>(static_cast<const uint8_t *>(obj), 0, 4);
+      return verifier.VerifyField<::BookReader>(static_cast<const uint8_t *>(obj), 0, 4);
     }
     case Character_Other: {
       auto ptr = reinterpret_cast<const flatbuffers::String *>(obj);
@@ -890,20 +890,20 @@ inline void *CharacterUnion::UnPack(const void *obj, Character type, const flatb
   (void)resolver;
   switch (type) {
     case Character_MuLan: {
-      auto ptr = reinterpret_cast<const Attacker *>(obj);
+      auto ptr = reinterpret_cast<const ::Attacker *>(obj);
       return ptr->UnPack(resolver);
     }
     case Character_Rapunzel: {
-      auto ptr = reinterpret_cast<const Rapunzel *>(obj);
-      return new Rapunzel(*ptr);
+      auto ptr = reinterpret_cast<const ::Rapunzel *>(obj);
+      return new ::Rapunzel(*ptr);
     }
     case Character_Belle: {
-      auto ptr = reinterpret_cast<const BookReader *>(obj);
-      return new BookReader(*ptr);
+      auto ptr = reinterpret_cast<const ::BookReader *>(obj);
+      return new ::BookReader(*ptr);
     }
     case Character_BookFan: {
-      auto ptr = reinterpret_cast<const BookReader *>(obj);
-      return new BookReader(*ptr);
+      auto ptr = reinterpret_cast<const ::BookReader *>(obj);
+      return new ::BookReader(*ptr);
     }
     case Character_Other: {
       auto ptr = reinterpret_cast<const flatbuffers::String *>(obj);
@@ -921,19 +921,19 @@ inline flatbuffers::Offset<void> CharacterUnion::Pack(flatbuffers::FlatBufferBui
   (void)_rehasher;
   switch (type) {
     case Character_MuLan: {
-      auto ptr = reinterpret_cast<const AttackerT *>(value);
+      auto ptr = reinterpret_cast<const ::AttackerT *>(value);
       return CreateAttacker(_fbb, ptr, _rehasher).Union();
     }
     case Character_Rapunzel: {
-      auto ptr = reinterpret_cast<const Rapunzel *>(value);
+      auto ptr = reinterpret_cast<const ::Rapunzel *>(value);
       return _fbb.CreateStruct(*ptr).Union();
     }
     case Character_Belle: {
-      auto ptr = reinterpret_cast<const BookReader *>(value);
+      auto ptr = reinterpret_cast<const ::BookReader *>(value);
       return _fbb.CreateStruct(*ptr).Union();
     }
     case Character_BookFan: {
-      auto ptr = reinterpret_cast<const BookReader *>(value);
+      auto ptr = reinterpret_cast<const ::BookReader *>(value);
       return _fbb.CreateStruct(*ptr).Union();
     }
     case Character_Other: {
@@ -951,19 +951,19 @@ inline flatbuffers::Offset<void> CharacterUnion::Pack(flatbuffers::FlatBufferBui
 inline CharacterUnion::CharacterUnion(const CharacterUnion &u) : type(u.type), value(nullptr) {
   switch (type) {
     case Character_MuLan: {
-      value = new AttackerT(*reinterpret_cast<AttackerT *>(u.value));
+      value = new ::AttackerT(*reinterpret_cast<::AttackerT *>(u.value));
       break;
     }
     case Character_Rapunzel: {
-      value = new Rapunzel(*reinterpret_cast<Rapunzel *>(u.value));
+      value = new ::Rapunzel(*reinterpret_cast<::Rapunzel *>(u.value));
       break;
     }
     case Character_Belle: {
-      value = new BookReader(*reinterpret_cast<BookReader *>(u.value));
+      value = new ::BookReader(*reinterpret_cast<::BookReader *>(u.value));
       break;
     }
     case Character_BookFan: {
-      value = new BookReader(*reinterpret_cast<BookReader *>(u.value));
+      value = new ::BookReader(*reinterpret_cast<::BookReader *>(u.value));
       break;
     }
     case Character_Other: {
@@ -982,22 +982,22 @@ inline CharacterUnion::CharacterUnion(const CharacterUnion &u) : type(u.type), v
 inline void CharacterUnion::Reset() {
   switch (type) {
     case Character_MuLan: {
-      auto ptr = reinterpret_cast<AttackerT *>(value);
+      auto ptr = reinterpret_cast<::AttackerT *>(value);
       delete ptr;
       break;
     }
     case Character_Rapunzel: {
-      auto ptr = reinterpret_cast<Rapunzel *>(value);
+      auto ptr = reinterpret_cast<::Rapunzel *>(value);
       delete ptr;
       break;
     }
     case Character_Belle: {
-      auto ptr = reinterpret_cast<BookReader *>(value);
+      auto ptr = reinterpret_cast<::BookReader *>(value);
       delete ptr;
       break;
     }
     case Character_BookFan: {
-      auto ptr = reinterpret_cast<BookReader *>(value);
+      auto ptr = reinterpret_cast<::BookReader *>(value);
       delete ptr;
       break;
     }
@@ -1023,10 +1023,10 @@ inline bool VerifyGadget(flatbuffers::Verifier &verifier, const void *obj, Gadge
       return true;
     }
     case Gadget_FallingTub: {
-      return verifier.VerifyField<FallingTub>(static_cast<const uint8_t *>(obj), 0, 4);
+      return verifier.VerifyField<::FallingTub>(static_cast<const uint8_t *>(obj), 0, 4);
     }
     case Gadget_HandFan: {
-      auto ptr = reinterpret_cast<const HandFan *>(obj);
+      auto ptr = reinterpret_cast<const ::HandFan *>(obj);
       return verifier.VerifyTable(ptr);
     }
     default: return true;
@@ -1049,11 +1049,11 @@ inline void *GadgetUnion::UnPack(const void *obj, Gadget type, const flatbuffers
   (void)resolver;
   switch (type) {
     case Gadget_FallingTub: {
-      auto ptr = reinterpret_cast<const FallingTub *>(obj);
-      return new FallingTub(*ptr);
+      auto ptr = reinterpret_cast<const ::FallingTub *>(obj);
+      return new ::FallingTub(*ptr);
     }
     case Gadget_HandFan: {
-      auto ptr = reinterpret_cast<const HandFan *>(obj);
+      auto ptr = reinterpret_cast<const ::HandFan *>(obj);
       return ptr->UnPack(resolver);
     }
     default: return nullptr;
@@ -1064,11 +1064,11 @@ inline flatbuffers::Offset<void> GadgetUnion::Pack(flatbuffers::FlatBufferBuilde
   (void)_rehasher;
   switch (type) {
     case Gadget_FallingTub: {
-      auto ptr = reinterpret_cast<const FallingTub *>(value);
+      auto ptr = reinterpret_cast<const ::FallingTub *>(value);
       return _fbb.CreateStruct(*ptr).Union();
     }
     case Gadget_HandFan: {
-      auto ptr = reinterpret_cast<const HandFanT *>(value);
+      auto ptr = reinterpret_cast<const ::HandFanT *>(value);
       return CreateHandFan(_fbb, ptr, _rehasher).Union();
     }
     default: return 0;
@@ -1078,11 +1078,11 @@ inline flatbuffers::Offset<void> GadgetUnion::Pack(flatbuffers::FlatBufferBuilde
 inline GadgetUnion::GadgetUnion(const GadgetUnion &u) : type(u.type), value(nullptr) {
   switch (type) {
     case Gadget_FallingTub: {
-      value = new FallingTub(*reinterpret_cast<FallingTub *>(u.value));
+      value = new ::FallingTub(*reinterpret_cast<::FallingTub *>(u.value));
       break;
     }
     case Gadget_HandFan: {
-      value = new HandFanT(*reinterpret_cast<HandFanT *>(u.value));
+      value = new ::HandFanT(*reinterpret_cast<::HandFanT *>(u.value));
       break;
     }
     default:
@@ -1093,12 +1093,12 @@ inline GadgetUnion::GadgetUnion(const GadgetUnion &u) : type(u.type), value(null
 inline void GadgetUnion::Reset() {
   switch (type) {
     case Gadget_FallingTub: {
-      auto ptr = reinterpret_cast<FallingTub *>(value);
+      auto ptr = reinterpret_cast<::FallingTub *>(value);
       delete ptr;
       break;
     }
     case Gadget_HandFan: {
-      auto ptr = reinterpret_cast<HandFanT *>(value);
+      auto ptr = reinterpret_cast<::HandFanT *>(value);
       delete ptr;
       break;
     }
@@ -1119,9 +1119,9 @@ inline const flatbuffers::TypeTable *CharacterTypeTable() {
     { flatbuffers::ET_STRING, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    AttackerTypeTable,
-    RapunzelTypeTable,
-    BookReaderTypeTable
+    ::AttackerTypeTable,
+    ::RapunzelTypeTable,
+    ::BookReaderTypeTable
   };
   static const char * const names[] = {
     "NONE",
@@ -1145,8 +1145,8 @@ inline const flatbuffers::TypeTable *GadgetTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    FallingTubTypeTable,
-    HandFanTypeTable
+    ::FallingTubTypeTable,
+    ::HandFanTypeTable
   };
   static const char * const names[] = {
     "NONE",
@@ -1235,7 +1235,7 @@ inline const flatbuffers::TypeTable *MovieTypeTable() {
     { flatbuffers::ET_SEQUENCE, 1, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    CharacterTypeTable
+    ::CharacterTypeTable
   };
   static const char * const names[] = {
     "main_character_type",
@@ -1301,16 +1301,16 @@ inline void FinishSizePrefixedMovieBuffer(
   fbb.FinishSizePrefixed(root, MovieIdentifier());
 }
 
-inline flatbuffers::unique_ptr<MovieT> UnPackMovie(
+inline flatbuffers::unique_ptr<::MovieT> UnPackMovie(
     const void *buf,
     const flatbuffers::resolver_function_t *res = nullptr) {
-  return flatbuffers::unique_ptr<MovieT>(GetMovie(buf)->UnPack(res));
+  return flatbuffers::unique_ptr<::MovieT>(GetMovie(buf)->UnPack(res));
 }
 
-inline flatbuffers::unique_ptr<MovieT> UnPackSizePrefixedMovie(
+inline flatbuffers::unique_ptr<::MovieT> UnPackSizePrefixedMovie(
     const void *buf,
     const flatbuffers::resolver_function_t *res = nullptr) {
-  return flatbuffers::unique_ptr<MovieT>(GetSizePrefixedMovie(buf)->UnPack(res));
+  return flatbuffers::unique_ptr<::MovieT>(GetSizePrefixedMovie(buf)->UnPack(res));
 }
 
 #endif  // FLATBUFFERS_GENERATED_UNIONVECTOR_H_

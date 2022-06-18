@@ -65,7 +65,7 @@ template<typename T> struct UnionInNestedNSTraits {
   static const UnionInNestedNS enum_value = UnionInNestedNS_NONE;
 };
 
-template<> struct UnionInNestedNSTraits<NamespaceA::NamespaceB::TableInNestedNS> {
+template<> struct UnionInNestedNSTraits<::NamespaceA::NamespaceB::TableInNestedNS> {
   static const UnionInNestedNS enum_value = UnionInNestedNS_TableInNestedNS;
 };
 
@@ -73,7 +73,7 @@ template<typename T> struct UnionInNestedNSUnionTraits {
   static const UnionInNestedNS enum_value = UnionInNestedNS_NONE;
 };
 
-template<> struct UnionInNestedNSUnionTraits<NamespaceA::NamespaceB::TableInNestedNST> {
+template<> struct UnionInNestedNSUnionTraits<::NamespaceA::NamespaceB::TableInNestedNST> {
   static const UnionInNestedNS enum_value = UnionInNestedNS_TableInNestedNS;
 };
 
@@ -107,13 +107,13 @@ struct UnionInNestedNSUnion {
   static void *UnPack(const void *obj, UnionInNestedNS type, const flatbuffers::resolver_function_t *resolver);
   flatbuffers::Offset<void> Pack(flatbuffers::FlatBufferBuilder &_fbb, const flatbuffers::rehasher_function_t *_rehasher = nullptr) const;
 
-  NamespaceA::NamespaceB::TableInNestedNST *AsTableInNestedNS() {
+  ::NamespaceA::NamespaceB::TableInNestedNST *AsTableInNestedNS() {
     return type == UnionInNestedNS_TableInNestedNS ?
-      reinterpret_cast<NamespaceA::NamespaceB::TableInNestedNST *>(value) : nullptr;
+      reinterpret_cast<::NamespaceA::NamespaceB::TableInNestedNST *>(value) : nullptr;
   }
-  const NamespaceA::NamespaceB::TableInNestedNST *AsTableInNestedNS() const {
+  const ::NamespaceA::NamespaceB::TableInNestedNST *AsTableInNestedNS() const {
     return type == UnionInNestedNS_TableInNestedNS ?
-      reinterpret_cast<const NamespaceA::NamespaceB::TableInNestedNST *>(value) : nullptr;
+      reinterpret_cast<const ::NamespaceA::NamespaceB::TableInNestedNST *>(value) : nullptr;
   }
 };
 
@@ -125,8 +125,8 @@ inline bool operator==(const UnionInNestedNSUnion &lhs, const UnionInNestedNSUni
       return true;
     }
     case UnionInNestedNS_TableInNestedNS: {
-      return *(reinterpret_cast<const NamespaceA::NamespaceB::TableInNestedNST *>(lhs.value)) ==
-             *(reinterpret_cast<const NamespaceA::NamespaceB::TableInNestedNST *>(rhs.value));
+      return *(reinterpret_cast<const ::NamespaceA::NamespaceB::TableInNestedNST *>(lhs.value)) ==
+             *(reinterpret_cast<const ::NamespaceA::NamespaceB::TableInNestedNST *>(rhs.value));
     }
     default: {
       return false;
@@ -327,7 +327,7 @@ inline bool VerifyUnionInNestedNS(flatbuffers::Verifier &verifier, const void *o
       return true;
     }
     case UnionInNestedNS_TableInNestedNS: {
-      auto ptr = reinterpret_cast<const NamespaceA::NamespaceB::TableInNestedNS *>(obj);
+      auto ptr = reinterpret_cast<const ::NamespaceA::NamespaceB::TableInNestedNS *>(obj);
       return verifier.VerifyTable(ptr);
     }
     default: return true;
@@ -350,7 +350,7 @@ inline void *UnionInNestedNSUnion::UnPack(const void *obj, UnionInNestedNS type,
   (void)resolver;
   switch (type) {
     case UnionInNestedNS_TableInNestedNS: {
-      auto ptr = reinterpret_cast<const NamespaceA::NamespaceB::TableInNestedNS *>(obj);
+      auto ptr = reinterpret_cast<const ::NamespaceA::NamespaceB::TableInNestedNS *>(obj);
       return ptr->UnPack(resolver);
     }
     default: return nullptr;
@@ -361,7 +361,7 @@ inline flatbuffers::Offset<void> UnionInNestedNSUnion::Pack(flatbuffers::FlatBuf
   (void)_rehasher;
   switch (type) {
     case UnionInNestedNS_TableInNestedNS: {
-      auto ptr = reinterpret_cast<const NamespaceA::NamespaceB::TableInNestedNST *>(value);
+      auto ptr = reinterpret_cast<const ::NamespaceA::NamespaceB::TableInNestedNST *>(value);
       return CreateTableInNestedNS(_fbb, ptr, _rehasher).Union();
     }
     default: return 0;
@@ -371,7 +371,7 @@ inline flatbuffers::Offset<void> UnionInNestedNSUnion::Pack(flatbuffers::FlatBuf
 inline UnionInNestedNSUnion::UnionInNestedNSUnion(const UnionInNestedNSUnion &u) : type(u.type), value(nullptr) {
   switch (type) {
     case UnionInNestedNS_TableInNestedNS: {
-      value = new NamespaceA::NamespaceB::TableInNestedNST(*reinterpret_cast<NamespaceA::NamespaceB::TableInNestedNST *>(u.value));
+      value = new ::NamespaceA::NamespaceB::TableInNestedNST(*reinterpret_cast<::NamespaceA::NamespaceB::TableInNestedNST *>(u.value));
       break;
     }
     default:
@@ -382,7 +382,7 @@ inline UnionInNestedNSUnion::UnionInNestedNSUnion(const UnionInNestedNSUnion &u)
 inline void UnionInNestedNSUnion::Reset() {
   switch (type) {
     case UnionInNestedNS_TableInNestedNS: {
-      auto ptr = reinterpret_cast<NamespaceA::NamespaceB::TableInNestedNST *>(value);
+      auto ptr = reinterpret_cast<::NamespaceA::NamespaceB::TableInNestedNST *>(value);
       delete ptr;
       break;
     }
@@ -398,7 +398,7 @@ inline const flatbuffers::TypeTable *UnionInNestedNSTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    NamespaceA::NamespaceB::TableInNestedNSTypeTable
+    ::NamespaceA::NamespaceB::TableInNestedNSTypeTable
   };
   static const char * const names[] = {
     "NONE",
@@ -417,7 +417,7 @@ inline const flatbuffers::TypeTable *EnumInNestedNSTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    NamespaceA::NamespaceB::EnumInNestedNSTypeTable
+    ::NamespaceA::NamespaceB::EnumInNestedNSTypeTable
   };
   static const char * const names[] = {
     "A",
