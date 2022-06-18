@@ -8,8 +8,8 @@
 #include "monster_test_generated.h"
 #include "test_assert.h"
 
-using MyGame::Example::Color;
-using MyGame::Example::Monster;
+using MyGame::Some::Repeated::MyGame::Example::Color;
+using MyGame::Some::Repeated::MyGame::Example::Monster;
 
 namespace flatbuffers {
 namespace grpc {
@@ -23,15 +23,15 @@ template<class T> struct is_same<T, T> { static const bool value = true; };
 
 inline std::string m1_name() { return "Cyberdemon"; }
 inline std::string m2_name() { return "Imp"; }
-inline MyGame::Example::Color m1_color() {
-  return MyGame::Example::Color_Red;
+inline MyGame::Some::Repeated::MyGame::Example::Color m1_color() {
+  return MyGame::Some::Repeated::MyGame::Example::Color_Red;
 }
-inline MyGame::Example::Color m2_color() {
-  return MyGame::Example::Color_Green;
+inline MyGame::Some::Repeated::MyGame::Example::Color m2_color() {
+  return MyGame::Some::Repeated::MyGame::Example::Color_Green;
 }
 inline void m1_color_check() {
   // Ensure that all compilation units see the same monster_test_generated.h.
-  extern void CheckTestGeneratedIsValid(const MyGame::Example::Color&);
+  extern void CheckTestGeneratedIsValid(const MyGame::Some::Repeated::MyGame::Example::Color&);
   CheckTestGeneratedIsValid(m1_color());
 }
 

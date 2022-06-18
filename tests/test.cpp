@@ -59,7 +59,7 @@ static_assert(flatbuffers::is_same<uint8_t, char>::value ||
 static const auto infinity_f = std::numeric_limits<float>::infinity();
 static const auto infinity_d = std::numeric_limits<double>::infinity();
 
-using namespace MyGame::Example;
+using namespace MyGame::Some::Repeated::MyGame::Example;
 
 void FlatBufferBuilderTest();
 
@@ -226,7 +226,7 @@ flatbuffers::DetachedBuffer CreateFlatBufferTest(std::string &buffer) {
       0, 0, 0, 0, 0, 0, 0, 0, 0, 3.14159f, 3.0f, 0.0f, vecofstrings2,
       vecofstructs, flex, testv2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       AnyUniqueAliases_NONE, 0, AnyAmbiguousAliases_NONE, 0, vecofcolors,
-      MyGame::Example::Race_None, 0, vec_of_stats);
+      MyGame::Some::Repeated::MyGame::Example::Race_None, 0, vec_of_stats);
 
   FinishMonsterBuffer(builder, mloc);
 
@@ -989,18 +989,18 @@ void ReflectionTest(uint8_t *flatbuf, size_t length) {
   auto root_table = schema.root_table();
 
   // Check the declaration files.
-  TEST_EQ_STR(root_table->name()->c_str(), "MyGame.Example.Monster");
+  TEST_EQ_STR(root_table->name()->c_str(), "MyGame.Some.Repeated.MyGame.Example.Monster");
   TEST_EQ_STR(root_table->declaration_file()->c_str(), "//monster_test.fbs");
   TEST_EQ_STR(
       schema.objects()->LookupByKey("TableA")->declaration_file()->c_str(),
       "//include_test/include_test1.fbs");
   TEST_EQ_STR(schema.objects()
-                  ->LookupByKey("MyGame.OtherNameSpace.Unused")
+                  ->LookupByKey("MyGame.Some.Repeated.MyGame.OtherNameSpace.Unused")
                   ->declaration_file()
                   ->c_str(),
               "//include_test/sub/include_test2.fbs");
   TEST_EQ_STR(schema.enums()
-                  ->LookupByKey("MyGame.OtherNameSpace.FromInclude")
+                  ->LookupByKey("MyGame.Some.Repeated.MyGame.OtherNameSpace.FromInclude")
                   ->declaration_file()
                   ->c_str(),
               "//include_test/sub/include_test2.fbs");
@@ -1056,7 +1056,7 @@ void ReflectionTest(uint8_t *flatbuf, size_t length) {
   TEST_EQ(pos_field_ptr->type()->base_type(), reflection::Obj);
   auto pos_table_ptr = schema.objects()->Get(pos_field_ptr->type()->index());
   TEST_NOTNULL(pos_table_ptr);
-  TEST_EQ_STR(pos_table_ptr->name()->c_str(), "MyGame.Example.Vec3");
+  TEST_EQ_STR(pos_table_ptr->name()->c_str(), "MyGame.Some.Repeated.MyGame.Example.Vec3");
 
   // Test nullability of fields: hp is a 0-default scalar, pos is a struct =>
   // optional, and name is a required string => not optional.
@@ -1255,13 +1255,13 @@ void MiniReflectFixedLengthArrayTest() {
   // VS10 does not support typed enums, exclude from tests
 #if !defined(_MSC_VER) || _MSC_VER >= 1700
   flatbuffers::FlatBufferBuilder fbb;
-  MyGame::Example::ArrayStruct aStruct(2, 12, 1);
-  auto aTable = MyGame::Example::CreateArrayTable(fbb, &aStruct);
+  MyGame::Some::Repeated::MyGame::Example::ArrayStruct aStruct(2, 12, 1);
+  auto aTable = MyGame::Some::Repeated::MyGame::Example::CreateArrayTable(fbb, &aStruct);
   fbb.Finish(aTable);
 
   auto flatbuf = fbb.Release();
   auto s = flatbuffers::FlatBufferToString(
-      flatbuf.data(), MyGame::Example::ArrayTableTypeTable());
+      flatbuf.data(), MyGame::Some::Repeated::MyGame::Example::ArrayTableTypeTable());
   TEST_EQ_STR(
       "{ "
       "a: { a: 2.0, "
@@ -2404,13 +2404,13 @@ void GenerateTableTextTest() {
   TEST_EQ(abilities->Get(2)->distance(), 12);
 
   std::string jsongen;
-  auto result = GenerateTextFromTable(parser, monster, "MyGame.Example.Monster",
+  auto result = GenerateTextFromTable(parser, monster, "MyGame.Some.Repeated.MyGame.Example.Monster",
                                       &jsongen);
   TEST_EQ(result, true);
   // Test sub table
   const Vec3 *pos = monster->pos();
   jsongen.clear();
-  result = GenerateTextFromTable(parser, pos, "MyGame.Example.Vec3", &jsongen);
+  result = GenerateTextFromTable(parser, pos, "MyGame.Some.Repeated.MyGame.Example.Vec3", &jsongen);
   TEST_EQ(result, true);
   TEST_EQ_STR(
       jsongen.c_str(),
@@ -2418,13 +2418,13 @@ void GenerateTableTextTest() {
   const Test &test3 = pos->test3();
   jsongen.clear();
   result =
-      GenerateTextFromTable(parser, &test3, "MyGame.Example.Test", &jsongen);
+      GenerateTextFromTable(parser, &test3, "MyGame.Some.Repeated.MyGame.Example.Test", &jsongen);
   TEST_EQ(result, true);
   TEST_EQ_STR(jsongen.c_str(), "{a: 5,b: 6}");
   const Test *test4 = monster->test4()->Get(0);
   jsongen.clear();
   result =
-      GenerateTextFromTable(parser, test4, "MyGame.Example.Test", &jsongen);
+      GenerateTextFromTable(parser, test4, "MyGame.Some.Repeated.MyGame.Example.Test", &jsongen);
   TEST_EQ(result, true);
   TEST_EQ_STR(jsongen.c_str(), "{a: 10,b: 20}");
 }
@@ -3683,27 +3683,27 @@ void FlatbuffersSpanTest() {}
 void FixedLengthArrayTest() {
   // Generate an ArrayTable containing one ArrayStruct.
   flatbuffers::FlatBufferBuilder fbb;
-  MyGame::Example::NestedStruct nStruct0(MyGame::Example::TestEnum::B);
+  MyGame::Some::Repeated::MyGame::Example::NestedStruct nStruct0(MyGame::Some::Repeated::MyGame::Example::TestEnum::B);
   TEST_NOTNULL(nStruct0.mutable_a());
   nStruct0.mutable_a()->Mutate(0, 1);
   nStruct0.mutable_a()->Mutate(1, 2);
   TEST_NOTNULL(nStruct0.mutable_c());
-  nStruct0.mutable_c()->Mutate(0, MyGame::Example::TestEnum::C);
-  nStruct0.mutable_c()->Mutate(1, MyGame::Example::TestEnum::A);
+  nStruct0.mutable_c()->Mutate(0, MyGame::Some::Repeated::MyGame::Example::TestEnum::C);
+  nStruct0.mutable_c()->Mutate(1, MyGame::Some::Repeated::MyGame::Example::TestEnum::A);
   TEST_NOTNULL(nStruct0.mutable_d());
   nStruct0.mutable_d()->Mutate(0, flatbuffers::numeric_limits<int64_t>::max());
   nStruct0.mutable_d()->Mutate(1, flatbuffers::numeric_limits<int64_t>::min());
-  MyGame::Example::NestedStruct nStruct1(MyGame::Example::TestEnum::C);
+  MyGame::Some::Repeated::MyGame::Example::NestedStruct nStruct1(MyGame::Some::Repeated::MyGame::Example::TestEnum::C);
   TEST_NOTNULL(nStruct1.mutable_a());
   nStruct1.mutable_a()->Mutate(0, 3);
   nStruct1.mutable_a()->Mutate(1, 4);
   TEST_NOTNULL(nStruct1.mutable_c());
-  nStruct1.mutable_c()->Mutate(0, MyGame::Example::TestEnum::C);
-  nStruct1.mutable_c()->Mutate(1, MyGame::Example::TestEnum::A);
+  nStruct1.mutable_c()->Mutate(0, MyGame::Some::Repeated::MyGame::Example::TestEnum::C);
+  nStruct1.mutable_c()->Mutate(1, MyGame::Some::Repeated::MyGame::Example::TestEnum::A);
   TEST_NOTNULL(nStruct1.mutable_d());
   nStruct1.mutable_d()->Mutate(0, flatbuffers::numeric_limits<int64_t>::min());
   nStruct1.mutable_d()->Mutate(1, flatbuffers::numeric_limits<int64_t>::max());
-  MyGame::Example::ArrayStruct aStruct(2, 12, 1);
+  MyGame::Some::Repeated::MyGame::Example::ArrayStruct aStruct(2, 12, 1);
   TEST_NOTNULL(aStruct.b());
   TEST_NOTNULL(aStruct.mutable_b());
   TEST_NOTNULL(aStruct.mutable_d());
@@ -3712,13 +3712,13 @@ void FixedLengthArrayTest() {
     aStruct.mutable_b()->Mutate(i, i + 1);
   aStruct.mutable_d()->Mutate(0, nStruct0);
   aStruct.mutable_d()->Mutate(1, nStruct1);
-  auto aTable = MyGame::Example::CreateArrayTable(fbb, &aStruct);
-  MyGame::Example::FinishArrayTableBuffer(fbb, aTable);
+  auto aTable = MyGame::Some::Repeated::MyGame::Example::CreateArrayTable(fbb, &aStruct);
+  MyGame::Some::Repeated::MyGame::Example::FinishArrayTableBuffer(fbb, aTable);
   // Verify correctness of the ArrayTable.
   flatbuffers::Verifier verifier(fbb.GetBufferPointer(), fbb.GetSize());
-  TEST_ASSERT(MyGame::Example::VerifyArrayTableBuffer(verifier));
+  TEST_ASSERT(MyGame::Some::Repeated::MyGame::Example::VerifyArrayTableBuffer(verifier));
   // Do test.
-  auto p = MyGame::Example::GetMutableArrayTable(fbb.GetBufferPointer());
+  auto p = MyGame::Some::Repeated::MyGame::Example::GetMutableArrayTable(fbb.GetBufferPointer());
   auto mArStruct = p->mutable_a();
   TEST_NOTNULL(mArStruct);
   TEST_NOTNULL(mArStruct->b());
@@ -3744,18 +3744,18 @@ void FixedLengthArrayTest() {
   TEST_NOTNULL(mArStruct->mutable_d()->GetMutablePointer(1)->mutable_a());
   mArStruct->mutable_d()->GetMutablePointer(1)->mutable_a()->Mutate(1, 5);
   TEST_EQ(5, mArStruct->d()->Get(1)->a()->Get(1));
-  TEST_EQ(MyGame::Example::TestEnum::B, mArStruct->d()->Get(0)->b());
+  TEST_EQ(MyGame::Some::Repeated::MyGame::Example::TestEnum::B, mArStruct->d()->Get(0)->b());
   TEST_NOTNULL(mArStruct->d()->Get(0)->c());
-  TEST_EQ(MyGame::Example::TestEnum::C, mArStruct->d()->Get(0)->c()->Get(0));
-  TEST_EQ(MyGame::Example::TestEnum::A, mArStruct->d()->Get(0)->c()->Get(1));
+  TEST_EQ(MyGame::Some::Repeated::MyGame::Example::TestEnum::C, mArStruct->d()->Get(0)->c()->Get(0));
+  TEST_EQ(MyGame::Some::Repeated::MyGame::Example::TestEnum::A, mArStruct->d()->Get(0)->c()->Get(1));
   TEST_EQ(flatbuffers::numeric_limits<int64_t>::max(),
           mArStruct->d()->Get(0)->d()->Get(0));
   TEST_EQ(flatbuffers::numeric_limits<int64_t>::min(),
           mArStruct->d()->Get(0)->d()->Get(1));
-  TEST_EQ(MyGame::Example::TestEnum::C, mArStruct->d()->Get(1)->b());
+  TEST_EQ(MyGame::Some::Repeated::MyGame::Example::TestEnum::C, mArStruct->d()->Get(1)->b());
   TEST_NOTNULL(mArStruct->d()->Get(1)->c());
-  TEST_EQ(MyGame::Example::TestEnum::C, mArStruct->d()->Get(1)->c()->Get(0));
-  TEST_EQ(MyGame::Example::TestEnum::A, mArStruct->d()->Get(1)->c()->Get(1));
+  TEST_EQ(MyGame::Some::Repeated::MyGame::Example::TestEnum::C, mArStruct->d()->Get(1)->c()->Get(0));
+  TEST_EQ(MyGame::Some::Repeated::MyGame::Example::TestEnum::A, mArStruct->d()->Get(1)->c()->Get(1));
   TEST_EQ(flatbuffers::numeric_limits<int64_t>::min(),
           mArStruct->d()->Get(1)->d()->Get(0));
   TEST_EQ(flatbuffers::numeric_limits<int64_t>::max(),
@@ -3767,7 +3767,7 @@ void FixedLengthArrayTest() {
   TEST_EQ(0, reinterpret_cast<uintptr_t>(mArStruct->f()) % 8);
 
   // Check if default constructor set all memory zero
-  const size_t arr_size = sizeof(MyGame::Example::ArrayStruct);
+  const size_t arr_size = sizeof(MyGame::Some::Repeated::MyGame::Example::ArrayStruct);
   char non_zero_memory[arr_size];
   // set memory chunk of size ArrayStruct to 1's
   std::memset(static_cast<void *>(non_zero_memory), 1, arr_size);
@@ -3775,8 +3775,8 @@ void FixedLengthArrayTest() {
 #  if defined(_MSC_VER) && defined(_DEBUG)
 #    undef new
 #  endif
-  MyGame::Example::ArrayStruct *ap =
-      new (non_zero_memory) MyGame::Example::ArrayStruct;
+  MyGame::Some::Repeated::MyGame::Example::ArrayStruct *ap =
+      new (non_zero_memory) MyGame::Some::Repeated::MyGame::Example::ArrayStruct;
 #  if defined(_MSC_VER) && defined(_DEBUG)
 #    define new DEBUG_NEW
 #  endif
@@ -3791,19 +3791,19 @@ void FixedLengthArrayTest() {}
     (!defined(_MSC_VER) || _MSC_VER >= 1700)
 void FixedLengthArrayConstructorTest() {
   const int32_t nested_a[2] = { 1, 2 };
-  MyGame::Example::TestEnum nested_c[2] = { MyGame::Example::TestEnum::A,
-                                            MyGame::Example::TestEnum::B };
+  MyGame::Some::Repeated::MyGame::Example::TestEnum nested_c[2] = { MyGame::Some::Repeated::MyGame::Example::TestEnum::A,
+                                            MyGame::Some::Repeated::MyGame::Example::TestEnum::B };
   const int64_t int64_2[2] = { -2, -1 };
 
-  std::array<MyGame::Example::NestedStruct, 2> init_d = {
-    { MyGame::Example::NestedStruct(nested_a, MyGame::Example::TestEnum::B,
+  std::array<MyGame::Some::Repeated::MyGame::Example::NestedStruct, 2> init_d = {
+    { MyGame::Some::Repeated::MyGame::Example::NestedStruct(nested_a, MyGame::Some::Repeated::MyGame::Example::TestEnum::B,
                                     nested_c, int64_2),
-      MyGame::Example::NestedStruct(nested_a, MyGame::Example::TestEnum::A,
+      MyGame::Some::Repeated::MyGame::Example::NestedStruct(nested_a, MyGame::Some::Repeated::MyGame::Example::TestEnum::A,
                                     nested_c,
                                     std::array<int64_t, 2>{ { 12, 13 } }) }
   };
 
-  MyGame::Example::ArrayStruct arr_struct(
+  MyGame::Some::Repeated::MyGame::Example::ArrayStruct arr_struct(
       8.125,
       std::array<int32_t, 0xF>{
           { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 } },
@@ -3816,17 +3816,17 @@ void FixedLengthArrayConstructorTest() {
   const auto &arr_d_0 = *arr_struct.d()->Get(0);
   TEST_EQ(arr_d_0.a()->Get(0), 1);
   TEST_EQ(arr_d_0.a()->Get(1), 2);
-  TEST_EQ(arr_d_0.b(), MyGame::Example::TestEnum::B);
-  TEST_EQ(arr_d_0.c()->Get(0), MyGame::Example::TestEnum::A);
-  TEST_EQ(arr_d_0.c()->Get(1), MyGame::Example::TestEnum::B);
+  TEST_EQ(arr_d_0.b(), MyGame::Some::Repeated::MyGame::Example::TestEnum::B);
+  TEST_EQ(arr_d_0.c()->Get(0), MyGame::Some::Repeated::MyGame::Example::TestEnum::A);
+  TEST_EQ(arr_d_0.c()->Get(1), MyGame::Some::Repeated::MyGame::Example::TestEnum::B);
   TEST_EQ(arr_d_0.d()->Get(0), -2);
   TEST_EQ(arr_d_0.d()->Get(1), -1);
   const auto &arr_d_1 = *arr_struct.d()->Get(1);
   TEST_EQ(arr_d_1.a()->Get(0), 1);
   TEST_EQ(arr_d_1.a()->Get(1), 2);
-  TEST_EQ(arr_d_1.b(), MyGame::Example::TestEnum::A);
-  TEST_EQ(arr_d_1.c()->Get(0), MyGame::Example::TestEnum::A);
-  TEST_EQ(arr_d_1.c()->Get(1), MyGame::Example::TestEnum::B);
+  TEST_EQ(arr_d_1.b(), MyGame::Some::Repeated::MyGame::Example::TestEnum::A);
+  TEST_EQ(arr_d_1.c()->Get(0), MyGame::Some::Repeated::MyGame::Example::TestEnum::A);
+  TEST_EQ(arr_d_1.c()->Get(1), MyGame::Some::Repeated::MyGame::Example::TestEnum::B);
   TEST_EQ(arr_d_1.d()->Get(0), 12);
   TEST_EQ(arr_d_1.d()->Get(1), 13);
 
@@ -3952,7 +3952,7 @@ void FixedLengthArraySpanTest() {
   auto verifier = flatbuffers::Verifier(fbb.GetBufferPointer(), fbb.GetSize());
   TEST_EQ(true, VerifyArrayTableBuffer(verifier));
 
-  auto p = MyGame::Example::GetMutableArrayTable(fbb.GetBufferPointer());
+  auto p = MyGame::Some::Repeated::MyGame::Example::GetMutableArrayTable(fbb.GetBufferPointer());
   TEST_NOTNULL(p);
   auto table_struct = p->mutable_a();
   TEST_NOTNULL(table_struct);
@@ -3970,18 +3970,18 @@ void FixedLengthArraySpanTest() {
   // test scalars
   auto &const_nested = const_d[0];
   auto &mutable_nested = mutable_d[0];
-  static_assert(sizeof(MyGame::Example::TestEnum) == sizeof(uint8_t),
+  static_assert(sizeof(MyGame::Some::Repeated::MyGame::Example::TestEnum) == sizeof(uint8_t),
                 "TestEnum's underlaying type must by byte");
   TEST_NOTNULL(const_nested.d());
   TEST_NOTNULL(mutable_nested.d());
   {
-    flatbuffers::span<const MyGame::Example::TestEnum, 2> const_d_c =
+    flatbuffers::span<const MyGame::Some::Repeated::MyGame::Example::TestEnum, 2> const_d_c =
         flatbuffers::make_span(*const_nested.c());
     auto mutable_d_c = flatbuffers::make_span(*mutable_nested.mutable_c());
     TEST_EQ(2, const_d_c.size());
     TEST_EQ(2, mutable_d_c.size());
-    TEST_EQ(MyGame::Example::TestEnum::C, const_d_c[0]);
-    TEST_EQ(MyGame::Example::TestEnum::B, const_d_c[1]);
+    TEST_EQ(MyGame::Some::Repeated::MyGame::Example::TestEnum::C, const_d_c[0]);
+    TEST_EQ(MyGame::Some::Repeated::MyGame::Example::TestEnum::B, const_d_c[1]);
     TEST_ASSERT(mutable_d_c.end() == std::copy(const_d_c.begin(),
                                                const_d_c.end(),
                                                mutable_d_c.begin()));
@@ -4021,14 +4021,14 @@ void TestEmbeddedBinarySchema() {
 
   // parse schema first, so we can use it to parse the data after
   flatbuffers::Parser parserOrg, parserGen;
-  flatbuffers::Verifier verifier(MyGame::Example::MonsterBinarySchema::data(),
-                                 MyGame::Example::MonsterBinarySchema::size());
+  flatbuffers::Verifier verifier(MyGame::Some::Repeated::MyGame::Example::MonsterBinarySchema::data(),
+                                 MyGame::Some::Repeated::MyGame::Example::MonsterBinarySchema::size());
   TEST_EQ(reflection::VerifySchemaBuffer(verifier), true);
-  TEST_EQ(parserOrg.Deserialize(MyGame::Example::MonsterBinarySchema::data(),
-                                MyGame::Example::MonsterBinarySchema::size()),
+  TEST_EQ(parserOrg.Deserialize(MyGame::Some::Repeated::MyGame::Example::MonsterBinarySchema::data(),
+                                MyGame::Some::Repeated::MyGame::Example::MonsterBinarySchema::size()),
           true);
-  TEST_EQ(parserGen.Deserialize(MyGame::Example::MonsterBinarySchema::data(),
-                                MyGame::Example::MonsterBinarySchema::size()),
+  TEST_EQ(parserGen.Deserialize(MyGame::Some::Repeated::MyGame::Example::MonsterBinarySchema::data(),
+                                MyGame::Some::Repeated::MyGame::Example::MonsterBinarySchema::size()),
           true);
   TEST_EQ(parserOrg.Parse(jsonfile.c_str()), true);
 
@@ -4351,9 +4351,9 @@ void FlatbuffersIteratorsTest() {
 
   {
     flatbuffers::FlatBufferBuilder fbb;
-    MyGame::Example::ArrayStruct aStruct;
-    MyGame::Example::FinishArrayTableBuffer(
-        fbb, MyGame::Example::CreateArrayTable(fbb, &aStruct));
+    MyGame::Some::Repeated::MyGame::Example::ArrayStruct aStruct;
+    MyGame::Some::Repeated::MyGame::Example::FinishArrayTableBuffer(
+        fbb, MyGame::Some::Repeated::MyGame::Example::CreateArrayTable(fbb, &aStruct));
     const auto &array_table =
         *flatbuffers::GetRoot<ArrayTable>(fbb.GetBufferPointer());
     TEST_ASSERT(array_table.a());
